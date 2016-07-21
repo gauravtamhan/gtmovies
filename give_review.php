@@ -28,6 +28,10 @@
             margin-top: 80px;
          }
 
+         hr {
+          width: 70%;
+         }
+
          label {
          		text-align: left;
 				padding-top: 10px;
@@ -35,7 +39,7 @@
 				font-size: 20px;
 				color: #4d4d4d;
 				font-family: Verdana;
-				width: 70%;
+				width: 20%;
 				display: inline-block;
          }
 
@@ -46,16 +50,25 @@
          }
 
          select {
-         	/*-webkit-appearance: button;
-		    -moz-appearance: button;
-		    -webkit-user-select: none;
-		    -moz-user-select: none;
-		    -webkit-padding-end: 20px;
-		    -moz-padding-end: 20px;
-		    -webkit-padding-start: 2px;
-		    -moz-padding-start: 2px;*/
-		    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-         }
+             -webkit-appearance: button;
+             -webkit-border-radius: 2px;
+             -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+             -webkit-padding-end: 20px;
+             -webkit-padding-start: 2px;
+             -webkit-user-select: none;
+             background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+             background-position: 97% center;
+             background-repeat: no-repeat;
+             border: 1px solid #AAA;
+             color: #555;
+             font-size: inherit;
+             margin: 20px;
+             overflow: hidden;
+             padding: 5px 10px;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+             width: 200px;
+          }
 
          textarea {
          	resize: none;
@@ -114,6 +127,8 @@
          // }	
      ?>
      <h1> <?php echo $movie ?> Review</h1>
+
+     <hr>
       <div align = "center">
          <div class="container" align = "left">
             
@@ -122,12 +137,12 @@
                
                <form action = "" method = "post">
                   <label> Rating </label> <select name="Rating">
-                  						<option value = "1"> 1 </option>
-                  						<option value = "2"> 2 </option>
-                  						<option value = "3"> 3 </option>
-                  						<option value = "4"> 4 </option>
-                  						<option value = "5"> 5 </option> </select> <br>
-                  <label> Title </label> <input type = "text" name = "Title" />
+                  						<option value = "1"> 1 out of 5 </option>
+                  						<option value = "2"> 2 out of 5 </option>
+                  						<option value = "3"> 3 out of 5 </option>
+                  						<option value = "4"> 4 out of 5 </option>
+                  						<option value = "5"> 5 out of 5 </option> </select> <br>
+                  <label> Title </label> <input type = "text" name = "Title" placeholder="Give your review a name..." />
                   <label> Comment </label> <textarea name = "Comment" rows="10" cols="62" placeholder="Write you review here..."></textarea>
                
                   <input type = "submit" value = "Submit"/>

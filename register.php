@@ -65,6 +65,10 @@
             text-align: center;
             margin-top: 80px;
          }
+
+         hr {
+          width: 70%;
+         }
          
          input[type=text], input[type=password]{
              width: 100%;

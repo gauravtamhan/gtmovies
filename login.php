@@ -13,16 +13,16 @@
       $row = mysqli_fetch_assoc($result);
       
       $count = mysqli_num_rows($result);
+
       
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
          $_SESSION['current_user'] = $myusername;
-         
-         header("location: welcome.php");
+         header("location: home.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $error = "Your Username or Password is invalid";
       }
    }
 ?>
@@ -51,7 +51,11 @@
    </head>
    
    <body bgcolor = "#FFFFFF">
-	
+	<?php
+      if (!isset($_POST['submit'])) {
+         $error = "";
+      }
+   ?>
       <div align = "center">
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
@@ -61,7 +65,7 @@
                <form action = "" method = "post">
                   <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
                   <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
+                  <input type = "submit" value = " Submit " style = "font-size:25"/><br />
                </form>
                
                <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>

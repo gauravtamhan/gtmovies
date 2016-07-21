@@ -13,13 +13,16 @@
       $row = mysqli_fetch_assoc($result);
       
       $count = mysqli_num_rows($result);
+      echo $count;
 
+      $user = array();
+
+      
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
          $_SESSION['current_user'] = $myusername;
-         // echo $_SESSION['current_user'];
          header("location: home.php");
       } else {
          $error = "Your Username or Password is invalid";
@@ -153,7 +156,7 @@
                <table align="center" class="registerbutton">
                   <tr>
                     <td>
-                      <a href="#"> Register </a>
+                      <a href="register.php"> Register </a>
                     </td>
                   </tr>
                 </table>

@@ -109,7 +109,7 @@
 					<a href="overview.php"> Overview </a>
 				</td>
 				<td>
-					<a href="#"> Movie Review </a>
+					<a href="review.php"> Movie Review </a>
 				</td>
 				<td>
 					<a href="#"> Buy Ticket </a>

@@ -4,7 +4,6 @@
 
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
-         echo "initially";
    		$count = 0;
    		$mang_pass_sql = "SELECT * FROM SYSTEM_INFO";
    		$mang_pass_result = mysqli_query($db, '$mang_pass_sql');
@@ -12,7 +11,6 @@
 
       
       if ($_POST['password'] == "" || $_POST['conf_password'] == "" || $_POST['email'] == "" || $_POST['username'] == "") {
-            echo "please privide";
       		$error = "Please provide input to all fields";
       } else if ($_POST['mymang_password'] != "" && $_POST['mymang_password'] != $mang_pass) {
       		$error = "Manager password is incorrect.";
@@ -26,10 +24,10 @@
             $new_user_result = mysqli_query($db, $new_user_qu);
             $numb_rows = mysqli_num_rows($new_user_result);
             if ($numb_rows == 0) {
-               $sql = "INSERT INTO MANAGER (Email, Username, Password) VALUES ('$new_username', '$new_email', '$new_password')";
+               $sql = "INSERT INTO MANAGER (Email, Username, Password) VALUES ('$new_email', '$new_username', '$new_password')";
                $result = mysqli_query($db, $sql);
                $error = "";
-               header("location: home.php");
+               header("location: login.php");
             } else {
                $error = "Username and Password already exists";
             }
@@ -42,10 +40,10 @@
       		$new_user_result = mysqli_query($db, $new_user_qu);
       		$numb_rows = mysqli_num_rows($new_user_result);
       		if ($numb_rows == 0) {
-      			$sql = "INSERT INTO CUSTOMER (Email, Username, Password) VALUES ('$new_username', '$new_email', '$new_password')";
+      			$sql = "INSERT INTO CUSTOMER (Email, Username, Password) VALUES ('$new_email', '$new_username', '$new_password')";
 				   $result = mysqli_query($db, $sql);
                $error = "";
-					header("location: home.php");
+					header("location: login.php");
 				} else {
       			$error = "Username and Password already exists";
       		}
@@ -61,19 +59,39 @@
       <title>Registeration Page</title>
       
       <style type = "text/css">
-         body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
+         h1 {
+            font-style: italic;
+            font-size: 30px;
+            text-align: center;
+            margin-top: 80px;
          }
          
-         label {
-            font-weight:bold;
-            width:100px;
-            font-size:14px;
+         input[type=text], input[type=password]{
+             width: 100%;
+             padding: 10px 10px;
+             margin-bottom: 8px;
+             box-sizing: border-box;
+             border: 1px solid #ccc;
+             -webkit-transition: 0.5s;
+             transition: 0.5s;
+             outline: none;
+             border-radius: 2px;
+             font-family: Georgia;
+             font-size: 15px;
          }
-         
-         .box {
-            border:#666666 solid 1px;
+
+         input[type=text]:focus, input[type=password]:focus {
+             border: 1px solid black;
+         }
+
+         input[type=submit] {
+            width: 100%;
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-family: Georgia;
          }
       </style>
       
@@ -85,20 +103,20 @@
             $error = "";
          }	
      ?>
-
+     <h1> Sign Up </h1>
       <div align = "center">
-         <div style = "width:500px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Registration</b></div>
+         <div style = "width:300px; border: none; margin-top:30px" align = "left">
+            
 				
-            <div style = "margin:30px">
+            <div style = "margin:20px">
                
                <form action = "" method = "post">
-                  <label>UserName  	:</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Email Address  :</label><input type = "text" name = "email" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <label>Confirm Password  :</label><input type = "password" name = "conf_password" class = "box" /><br/><br />
-                  <label>Manager Password  :</label><input type = "password" name = "mymang_password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Create "/><br />
+                  <input type = "text" name = "username" placeholder="Username"/>
+                  <input type = "text" name = "email" placeholder="Email Address"/>
+                  <input type = "password" name = "password" placeholder="Password" />
+                  <input type = "password" name = "conf_password" placeholder="Confirm Password" />
+                  <input type = "password" name = "mymang_password" placeholder="Manager Password" />
+                  <input type = "submit" value = " Create"/>
                </form>
 
 

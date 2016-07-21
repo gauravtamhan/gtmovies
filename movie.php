@@ -46,6 +46,46 @@
 			hr {
 				width: 70%;
 			}
+
+
+			table {
+				margin-top: 90px;
+	      		border-collapse: separate;
+	      		width: 80%;
+	      		border: none;
+	      		border-spacing: 20px;
+	      	}
+
+	      	th, td {
+	    		border: 1px solid black;
+			}
+
+			td {
+				height: 50px;
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				font-size: 20px;
+			}
+
+			a {
+				display: block;
+				width: 100%;
+			}
+			
+			td:hover {
+				background-color:#f5f5f5
+			}
+
+			a:link {
+				color: black;
+				text-decoration: none;
+			}
+
+			a:visited {
+				color: black;
+				text-decoration: none;
+			}
 		</style>
 	</head>
 	<body>
@@ -53,6 +93,18 @@
 		
 		<p> Released: <?php echo $release ?>  | <?php echo $rating ?> | <?php echo $length ?> | <?php echo $genre ?></p>
 		<hr>
-
+		<table align="center">
+			<tr>
+				<td>
+					<a href="#"> Overview </a>
+				</td>
+				<td>
+					<a href="#"> Movie Review </a>
+				</td>
+				<td>
+					<a href="#"> Buy Ticket </a>
+				</td>
+			</tr>
+		</table>
 	</body>
 </html>

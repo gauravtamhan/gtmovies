@@ -14,10 +14,10 @@
 
       <style>
       	h1 {
-				font-style: italic;
-				font-size: 50px;
-				text-align: center;
-				padding-top: 20px;
+			font-style: italic;
+			font-size: 50px;
+			text-align: center;
+			padding-top: 20px;
 			}
 
 		p {
@@ -25,13 +25,16 @@
 			font-family: Georgia;
 			padding-top: 5px;
 			padding-left: 5px;
+			display: inline-block;
 		}
       	table {
-      		border-collapse: collapse;
+      		border-collapse: separate;
+      		border: none;
+      		border-spacing: 20px;
       		width: 50%;
       	}
 
-      	table, th, td {
+      	th, td {
     		border: 1px solid black;
 		}
 
@@ -67,7 +70,8 @@
    </head>
    
    <body>
-   		<p> <a href="me.php" >Me</a> </p>
+   		<p style="margin-left:5%"> <a href="me.php" >Me</a> </p>
+   		<p style="margin-left:80%"> <a href="logout.php" >Log Out</a> </p>
    			<hr>
       <center><h1> Now Playing </h1> </center>
       <!-- <h2><a href = "logout.php">Sign Out</a></h2> -->

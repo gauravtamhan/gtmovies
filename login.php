@@ -15,13 +15,13 @@
       $count = mysqli_num_rows($result);
 
       
-      
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
          $_SESSION['current_user'] = $myusername;
+         // echo $_SESSION['current_user'];
          header("location: home.php");
-      }else {
+      } else {
          $error = "Your Username or Password is invalid";
       }
    }
@@ -91,22 +91,22 @@
 	<?php
       if (!isset($_POST['submit'])) {
          $error = "";
+         // echo $_POST['submit'];
       }
    ?>
    <h1> GT Movies </h1>
       <div align = "center">
          <div style = "width:300px; border: none; margin-top:80px" align = "left">
-            <!-- <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div> -->
 				
             <div style = "margin:20px">
                
                <form action = "" method = "post">
                   <input type = "text" name = "username" placeholder="Username" />
                   <input type = "password" name = "password" placeholder="Password" />
-                  <input type = "submit" value = " Log In " /><br />
+                  <input type = "submit" value = "Log In" /><br />
                </form>
                
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
+               <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
 					
             </div>
 				

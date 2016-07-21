@@ -146,6 +146,12 @@
 			<table align="center">
 				<tr>
 					<td>
+						<a href="give_review.php"> Give Review </a>
+					</td>
+					
+				</tr>
+				<tr>
+					<td>
 						<a href="movie.php?movie=<?php echo $movie ?>"> Back </a>
 					</td>
 					

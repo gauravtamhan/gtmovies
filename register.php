@@ -97,6 +97,54 @@
             border: none;
             font-family: Georgia;
          }
+
+         .backbutton {
+            margin-top: 0px;
+            border-collapse: separate;
+        
+            height: 50px;
+            border: none;
+            border-spacing: 20px;
+          }
+
+          table {
+            margin-top: 10px;
+            border-collapse: separate;
+            width: 100%;
+            border: none;
+            border-spacing: 10px;
+          }
+
+          th, td {
+          border: 1px solid black;
+          }
+
+          td {
+            height: 40px;
+            text-align: center;
+            width: 100%;
+            font-family: Georgia;
+            font-size: 15px;
+          }
+
+          a {
+            display: block;
+            width: 100%;
+          }
+          
+          td:hover {
+            background-color:#f5f5f5
+          }
+
+          a:link {
+            color: black;
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: black;
+            text-decoration: none;
+          }
       </style>
       
    </head>
@@ -122,6 +170,13 @@
                   <input type = "password" name = "mymang_password" placeholder="Manager Password" />
                   <input type = "submit" value = " Create"/>
                </form>
+               <table align="center" class="backbutton">
+                  <tr>
+                    <td>
+                      <a href="login.php"> Cancel </a>
+                    </td>
+                  </tr>
+                </table>
 
 
                <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>

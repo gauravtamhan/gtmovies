@@ -6,6 +6,7 @@
 
 <?php
   $query = "SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, SUM(Total_cost) AS Revenue FROM ORDER GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
+  $result = mysql_query($query);
 ?>
 
 <html>
@@ -82,12 +83,13 @@
         <td>Revenue</td>
       </tr>
       <?php
-         while ($row = mysql_fetch_array($query)) {
+         while ($row = mysql_fetch_array($result)) {
            echo "<tr>";
            echo "<td>".$row[Month]."</td>";
            echo "<td>".$row[Revenue]."</td>";
            echo "</tr>";
          }
       ?>
+    </table>
 	</body>
 </html>

@@ -9,20 +9,20 @@
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
       
       $sql = "SELECT * FROM CUSTOMER WHERE Username = '$myusername' and Password = '$mypassword'";
-      $result = mysqli_query($db,$sql);
+      $result = mysqli_query($db, $sql);
       $row = mysqli_fetch_assoc($result);
       
       $count = mysqli_num_rows($result);
-      
+
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
       if($count == 1) {
          $_SESSION['current_user'] = $myusername;
-         
-         header("location: welcome.php");
-      }else {
-         $error = "Your Login Name or Password is invalid";
+         // echo $_SESSION['current_user'];
+         header("location: home.php");
+      } else {
+         $error = "Your Username or Password is invalid";
       }
    }
 ?>
@@ -33,10 +33,19 @@
       
       <style type = "text/css">
          body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
+           /* background-image: url("tower.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;*/
          }
          
+         h1 {
+            font-style: italic;
+            font-size: 50px;
+            text-align: center;
+            margin-top: 80px;
+            
+         }
          label {
             font-weight:bold;
             width:100px;
@@ -46,25 +55,58 @@
          .box {
             border:#666666 solid 1px;
          }
+
+         input[type=text], input[type=password]{
+             width: 100%;
+             padding: 10px 10px;
+             margin-bottom: 8px;
+             box-sizing: border-box;
+             border: 1px solid #ccc;
+             -webkit-transition: 0.5s;
+             transition: 0.5s;
+             outline: none;
+             border-radius: 2px;
+             font-family: Georgia;
+             font-size: 15px;
+         }
+
+         input[type=text]:focus, input[type=password]:focus {
+             border: 1px solid black;
+         }
+
+         input[type=submit] {
+            width: 100%;
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-family: Georgia;
+         }
       </style>
       
    </head>
    
    <body bgcolor = "#FFFFFF">
-	
+	<?php
+      if (!isset($_POST['submit'])) {
+         $error = "";
+         // echo $_POST['submit'];
+      }
+   ?>
+   <h1> GT Movies </h1>
       <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
+         <div style = "width:300px; border: none; margin-top:80px" align = "left">
 				
-            <div style = "margin:30px">
+            <div style = "margin:20px">
                
                <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
+                  <input type = "text" name = "username" placeholder="Username" />
+                  <input type = "password" name = "password" placeholder="Password" />
+                  <input type = "submit" value = "Log In" /><br />
                </form>
                
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
+               <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
 					
             </div>
 				

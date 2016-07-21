@@ -6,7 +6,7 @@
 
 <?php
   $query = "SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, SUM(Total_cost) AS Revenue FROM ORDER GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
-  $result = mysqli_query($query);
+  $result = mysqli_query($db, $query);
 ?>
 
 <html>

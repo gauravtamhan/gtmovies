@@ -1,6 +1,9 @@
 <?php
 	include("config.php");
-	session_start(); 
+	session_start();
+	// if (isset($_SESSION['movie'])) {
+	// 	$_SESSION['movie'] = $_GET['movie'];
+	// }
 	$_SESSION['movie'] = $_GET['movie'];
 	$movie = $_SESSION['movie'];
 ?>
@@ -47,6 +50,13 @@
 				width: 70%;
 			}
 
+			.backbutton {
+				margin-top: 20px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+			}
 
 			table {
 				margin-top: 90px;
@@ -96,7 +106,7 @@
 		<table align="center">
 			<tr>
 				<td>
-					<a href="#"> Overview </a>
+					<a href="overview.php"> Overview </a>
 				</td>
 				<td>
 					<a href="#"> Movie Review </a>
@@ -105,6 +115,13 @@
 					<a href="#"> Buy Ticket </a>
 				</td>
 			</tr>
+		</table>
+
+		<table align="center" class="backbutton">
+			<tr>
+				<td>
+					<a href="home.php"> Back </a>
+				</td>
 		</table>
 	</body>
 </html>

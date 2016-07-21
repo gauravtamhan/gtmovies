@@ -122,6 +122,7 @@
 				<td>
 					<a href="home.php"> Back </a>
 				</td>
+			</tr>
 		</table>
 	</body>
 </html>

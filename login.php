@@ -44,17 +44,62 @@
             font-size: 50px;
             text-align: center;
             margin-top: 80px;
-            
          }
+
+         .registerbutton {
+            margin-top: 0px;
+            border-collapse: separate;
+        
+            height: 50px;
+            border: none;
+            border-spacing: 20px;
+          }
+
+          table {
+            margin-top: 10px;
+            border-collapse: separate;
+            width: 100%;
+            border: none;
+            border-spacing: 10px;
+          }
+
+          th, td {
+          border: 1px solid black;
+          }
+
+          td {
+            height: 40px;
+            text-align: center;
+            width: 100%;
+            font-family: Georgia;
+            font-size: 15px;
+          }
+
+          a {
+            display: block;
+            width: 100%;
+          }
+          
+          td:hover {
+            background-color:#f5f5f5
+          }
+
+          a:link {
+            color: black;
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: black;
+            text-decoration: none;
+          }
+
          label {
             font-weight:bold;
             width:100px;
             font-size:14px;
          }
          
-         .box {
-            border:#666666 solid 1px;
-         }
 
          input[type=text], input[type=password]{
              width: 100%;
@@ -105,6 +150,13 @@
                   <input type = "password" name = "password" placeholder="Password" />
                   <input type = "submit" value = "Log In" /><br />
                </form>
+               <table align="center" class="registerbutton">
+                  <tr>
+                    <td>
+                      <a href="#"> Register </a>
+                    </td>
+                  </tr>
+                </table>
                
                <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
 					

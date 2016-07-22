@@ -1,73 +1,239 @@
 <?php
    include("config.php");
    session_start();
-   // $user_input = $_SESSION["user_input"];
-   //$current_user = $_SESSION["user_input"];
-       
-			
-  		//$user_input = echo 'name1';
-		$query = "SELECT Theater_ID, Name, Street, City, State, Zip FROM THEATER";
-			//WHERE Name = '$user_input' or City = '$user_input' or State = '$user_input'";
+   $user = $_SESSION["current_user"];
+   $movie = $_SESSION["movie"];
+?>
 
-		$result = mysqli_query($db, $query);
+<?php 
 
-		$error = "";
+	/**
+	* Gets the user's input from the previous page (Chose Theater) from the 2nd form that had an input
+	* tag with a name = user_input. Looks for it in the $_POST array at index 'user_input' and assigns it
+	* to the variable $users_search. 
+	*/
+   $users_search = $_POST["user_input"];
+   // echo "User had typed ".$users_search." in the previous screen";
+		
 
-		if(isset($_POST['next'])) {
-			if(!empty($_POST['check_list'])){ 
-				$_SESSION["theater_ID"] = $_POST['check_list'][0];
-			}
-			if (isset($_POST['check_box']) && !empty($_POST['check_list'])) {
-				//$prefered_qu = "INSERT INTO PREFERS VALUES ('$theaterID', )";
-			} else if (isset($_POST['check_box']) && empty($_POST['check_list'])) {
-				$error = "Please select a theater to save.";
-			}
+   /**
+   * Query to find a match in the database with what the user had inputted.
+   */
+	$query = "SELECT Theater_ID, Name, Street, City, State, Zip
+				FROM THEATER 
+				WHERE Name LIKE '$users_search%' OR City = '$users_search' OR State = '$users_search'";
 
-		}		
+	$result = mysqli_query($db, $query);
+	$count = mysqli_num_rows($result);
+	
+	$error = "";
 
+	$theaterIDs = array();
+	$theaterNames = array();
+	$theaterStreets = array();
+	$theaterCities = array();
+	$theaterStates = array();
+	$theaterZips = array();
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		array_push($theaterIDs, $row["Theater_ID"]);
+		array_push($theaterNames, $row["Name"]);
+		array_push($theaterStreets, $row["Street"]);
+		array_push($theaterCities, $row["City"]);
+		array_push($theaterStates, $row["State"]);
+		array_push($theaterZips, $row["Zip"]);
+
+	}
+	// print_r($theaterNames);
+	// print_r($theaterStreets);
+	// echo $count;
 ?>
 
 
 
-
 <html>
-   
-   <head>
-      <title> Search Theater Result </title>
+	<head>
+		<title>Theater Results</title>
 
-   </head>
-   
-   <body>
-   		
-   		
-   			<hr>
-      <center><h1> Results </h1> </center>     
+		<style>
+			h1 {
+				font-style: italic;
+				font-size: 50px;
+				text-align: center;
+				padding-top: 30px;
+			}
 
+			h3 {
+				text-align: center;
+			}
 
-			 <form id="theater"  action="search_theater_result.php"  method="post">
+			p {
+				text-align: center;
+				padding-top: 40px;
+				padding-bottom: 80px;
+				font-size: 20px;
+				color: grey;
+				font-family: Verdana;
+			}
 
+			hr {
+				width: 30%;
+			}
 
-				<?php  
-					while ($row = mysqli_fetch_row($result)) {
-						$theater_name = $row[1];
-						$theater_address = $row[2] . ", " . $row[3] . ", " . $row[4] . ", " . $row[5];
-						$theater_ID = $row[0];
-				?>
-							<input type="radio" name= "check_list[]" value="<?php echo $theater_ID; ?>"> <?php echo  $theater_name; ?><br />
-							<label> <?php echo $theater_address; ?> </label><br />
+			table.datatable {
+				margin-top: 60px;
+	      		border-collapse: collapse;
+	      		width: 600px;
+	      		border: 1px solid black;
+	      	
+	      	}
 
-				<?php
-					}
-				?>
+	      	td.datatable-address {
+	    		/*padding: 5px;*/
+	    		height: 30px;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 15px;
+				border-bottom: 1px solid black;
+			}
 
-				 <label><?php echo "$error" ?></label><br />
-				<label><input type="checkbox" name="check_box" value="save_theater"/> Save this theater </label><br />
+			td.datatable-selector {
+	    		/*padding: 5px;*/
+	    		padding-left: 10px;
+	    		height: 30px;
+	    		vertical-align: bottom;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 15px;
+				
+			}
 
-				<input type="submit" name="next" value="Next"/><br />
-			</form>
+			/*th.datatable {
+				height: 55px;
+				font-family: Georgia;
+				font-size: 22px;
+				border-bottom: 1px solid black;
+			}*/
 
+			td.datatable {
+				padding: 5px;
+				height: 50px;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 20px;
+			}
+
+			
+
+			table.button {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	            height: 50px;
+	      	}
+
+	      	th.button, td.button {
+	    		border: 1px solid black;
+			}
+
+			td.button {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				font-size: 20px;
+			}
+
+			a.button {
+				display: block;
+				width: 100%;
+				padding: 10px 0px;
+			}
+			
+			td.button:hover {
+				background-color:#f5f5f5
+			}
+
+			a.button:link {
+				color: black;
+				text-decoration: none;
+			}
+
+			a.button:visited {
+				color: black;
+				text-decoration: none;
+			}
+
+			table.backbutton {
+	            margin-top: 0px;
+	            border-collapse: separate;
+	            height: 50px;
+	            width: 30%;
+	            border: none;
+	            border-spacing: 20px;
+          }
+		</style>
+	</head>
+	<body>
+		<h1> Search Results </h1>
 		
-   </body>
-   
+		
+		
+
+		<table class="datatable" align="center">
+			
+			<?php
+				if ($count > 0) {
+		
+					$i = 0;
+					while ($i < $count) {
+						echo "<tr class="."datatable".">";
+							echo "<td class="."datatable-selector".">";
+								echo "<input type="."radio"." name="."A".">";
+							echo "</td>";
+
+							echo "<td class="."datatable".">";
+								echo $theaterNames[$i];
+							echo "</td>";
+						echo "</tr>";
+
+						echo "<tr class="."datatable".">";
+							echo "<td class="."datatable".">";
+								// echo "<input type="."radio"." name="."A".">";
+							echo "</td>";
+
+							echo "<td class="."datatable-address".">";
+								echo $theaterStreets[$i].", ".$theaterCities[$i].", ".$theaterStates[$i].", ".$theaterZips[$i];
+							echo "</td>";
+						echo "</tr>";
+						$i++;
+					}
+				} else {
+					$error = "Search did not find any results.";
+				}
+			?>			
+		</table>
+
+
+		<table align="center" class="button">
+          <tr class="button">
+            <td class="button">
+              <a class="button" href="#"> Next </a>
+            </td>
+          </tr>
+     	 </table>
+     	 <table align="center" class=" backbutton">
+          <tr class="button">
+            <td class="button">
+              <a class="button" href="choose_theater.php"> Back </a>
+            </td>
+          </tr>
+        </table>
+
+	</body>
 </html>
+
+
 

@@ -20,10 +20,11 @@
 
    }
 
-   // if(isset($_POST['choose'])) {
-   //    if(isset($_POST['saved_theater'])){ 
-   //       //header("location: search_theater_result.php");
-   //    }
+   
+   // if (isset($_POST['saved_theater'])) {
+   //    $theater_choice = $_POST['saved_theater'];
+   //    $_SESSION['selected_theater'] = $_POST['choose'];
+   //    echo "theater has been selected";
    // }
 
 
@@ -225,7 +226,7 @@
 				
             <div style = "margin:20px auto;">
                
-               <form action = "" method = "post"> 
+               <form action = "select_time.php" method = "post"> 
                   <label> Saved Theaters </label><select name="saved_theater">  
                                  <?php
 
@@ -237,14 +238,15 @@
                                     }
                                  ?>                    
                               </select>
-                  <input type = "submit" name= "choose" value ="Choose"/><br />
+                  <input type = "submit" name= "choose" value ='Choose' /><br />
                </form>
                <!-- <br> -->
                <p> OR </p>
-               <form action = "" method = "post"> 
+
+               <form action = "search_theater_result.php" method = "post"> 
                   <label> City/State/Theater </label>
                   <input type = "text" name= "user_input" placeholder="Search..." />
-                  <input type = "submit" name= "search" value = " Search "/><br />
+                  <input type = "submit" name= "search" value = 'Search'/><br />
                </form>
                <br>
                <br>

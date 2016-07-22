@@ -85,7 +85,7 @@
 		<table align="center">
 			<tr>
 				<td>
-					<a href="#"> My Order History </a>
+					<a href="order_history.php"> My Order History </a>
 				</td>
 			</tr>
 			<tr>

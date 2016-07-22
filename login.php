@@ -2,6 +2,7 @@
    include("config.php");
    session_start();
    
+   $error = "";
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
@@ -13,7 +14,7 @@
       $row = mysqli_fetch_assoc($result);
       
       $count = mysqli_num_rows($result);
-      echo $count;
+      // echo $count;
 
       $user = array();
 
@@ -137,10 +138,10 @@
    
    <body bgcolor = "#FFFFFF">
 	<?php
-      if (!isset($_POST['submit'])) {
-         $error = "";
-         // echo $_POST['submit'];
-      }
+      // if (!isset($_POST['submit'])) {
+      //    $error = "";
+      //    // echo $_POST['submit'];
+      // }
    ?>
    <h1> GT Movies </h1>
       <div align = "center">

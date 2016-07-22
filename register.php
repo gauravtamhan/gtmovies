@@ -2,7 +2,7 @@
    include("config.php");
    session_start();
 
-   
+   $error = "";
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    		$count = 0;
    		$mang_pass_sql = "SELECT * FROM SYSTEM_INFO";
@@ -15,7 +15,7 @@
       } else if ($_POST['mymang_password'] != "" && $_POST['mymang_password'] != $mang_pass) {
       		$error = "Manager password is incorrect.";
       } else if ($_POST['password'] != $_POST['conf_password']) {
-      		$error = "Password and Confirm Password do not match.";
+      		$error = "Password and Confirm Password did not match.";
       } else if ($_POST['mymang_password'] != "" && $_POST['mymang_password'] == $mang_pass) {
             $new_username = $_POST['username'];
             $new_email = $_POST['email'];
@@ -150,11 +150,7 @@
    </head>
    
    <body bgcolor = "#FFFFFF">
-     <?php
-         if(!isset($_POST['submit'])) {
-            $error = "";
-         }	
-     ?>
+     
      <h1> Sign Up </h1>
       <div align = "center">
          <div style = "width:300px; border: none; margin-top:30px" align = "left">
@@ -167,7 +163,7 @@
                   <input type = "text" name = "email" placeholder="Email Address"/>
                   <input type = "password" name = "password" placeholder="Password" />
                   <input type = "password" name = "conf_password" placeholder="Confirm Password" />
-                  <input type = "password" name = "mymang_password" placeholder="Manager Password" />
+                  <input type = "password" name = "mymang_password" placeholder="Manager Password (optional)" />
                   <input type = "submit" value = " Create"/>
                </form>
                <table align="center" class="backbutton">

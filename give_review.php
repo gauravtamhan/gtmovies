@@ -2,15 +2,51 @@
 	include("config.php");
 	session_start(); 
 	$movie = $_SESSION['movie'];
+  $user = $_SESSION["current_user"];
 ?>
 
 <?php
-	
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+  // check to see if user has bought a ticket 
+  // if they have then they can update, else error
+	 
+   $error = "";
+	 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $query = "SELECT Username, Status, Movie_title FROM ORDERS WHERE Username = '$user' AND Movie_title = '$movie'";
+    $result = mysqli_query($db, $query);
+
+    $count = mysqli_num_rows($result);
+    $has_seen = array ();
+
+    $flag = false;
+
+    while ($row = mysqli_fetch_row($result)) {
+    
+          array_push($has_seen, $row[1]);
+
+    } 
+
+    for ($i = 0; $i < $count; $i++) {
+      if ($has_seen[$i] == "Used") {
+        $flag = true;
+      }
+    }
+    // print_r($has_seen);
+
+  // if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$new_rating = $_POST['Rating'];
 		$new_title = $_POST['Title'];
 		$new_comment = $_POST['Comment'];
+
+    if ($flag) {
+      $sql = "INSERT INTO REVIEW (Title, Comment, Rating, Username, Movie_title) VALUES ('$new_title', '$new_comment', '$new_rating', '$user', '$movie')";
+      mysqli_query($db, $sql);
+      header("location: review.php");
+      // $error = "Successfully added review.";
+    } else {
+      $error = "You cannot review a movie you have not seen!";
+    }
 	}
 
 ?>
@@ -25,7 +61,7 @@
             font-style: italic;
             font-size: 30px;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 40px;
          }
 
          hr {
@@ -116,16 +152,60 @@
             border: none;
             font-family: Georgia;
          }
+
+         .backbutton {
+            margin-top: 0px;
+            border-collapse: separate;
+        
+            height: 50px;
+            border: none;
+            border-spacing: 20px;
+          }
+
+          table {
+            margin-top: 10px;
+            border-collapse: separate;
+            width: 100%;
+            border: none;
+            border-spacing: 10px;
+          }
+
+          th, td {
+          border: 1px solid black;
+          }
+
+          td {
+            height: 40px;
+            text-align: center;
+            width: 100%;
+            font-family: Georgia;
+            font-size: 15px;
+          }
+
+          a {
+            display: block;
+            width: 100%;
+          }
+          
+          td:hover {
+            background-color:#f5f5f5
+          }
+
+          a:link {
+            color: black;
+            text-decoration: none;
+          }
+
+          a:visited {
+            color: black;
+            text-decoration: none;
+          }
       </style>
       
    </head>
    
    <body bgcolor = "#FFFFFF">
-     <?php
-         // if(!isset($_POST['submit'])) {
-         //    $error = "";
-         // }	
-     ?>
+    
      <h1> <?php echo $movie ?> Review</h1>
 
      <hr>
@@ -147,9 +227,15 @@
                
                   <input type = "submit" value = "Submit"/>
                </form>
+               <table align="center" class="backbutton">
+                  <tr>
+                    <td>
+                      <a href="review.php"> Cancel </a>
+                    </td>
+                  </tr>
+                </table>
 
-
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
+               <div style = "font-size:11px; color:#cc0000; margin-top:10px; margin-bottom:30px;"> <?php echo "$error" ?> </div>
 					
             </div>
 				

@@ -5,7 +5,13 @@
 ?>
 
 <?php
-  $query = "SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, SUM(Total_cost) AS Revenue FROM ORDER GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
+  $pricequery = "SELECT Price FROM SYSTEM_INFO";
+  $price = mysqli_query($db, $pricequery);
+  $seniorquery = "SELECT Child_discount FROM SYSTEM_INFO";
+  $senior_discount = mysqli_query($db, $seniorquery);
+  $childquery = "SELECT Child_discount FROM SYSTEM_INFO";
+  $child_discount = mysqli_query($db, $childquery);
+  $query = "SELECT MONTH(`Date`) AS Month, SUM($price*(Senior_Tickets*(1-$senior_discount) + Child_Tickets*(1-$child_discount) + Adult_Tickets)) AS Revenue FROM `ORDERS` GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
   $result = mysqli_query($db, $query);
 ?>
 

@@ -5,7 +5,7 @@
 ?>
 
 <?php
-  $query = "(SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 5 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 6 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 7 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 8 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3)";
+  $query = "(SELECT MONTH(`Date`) AS Month, Movie_title AS Movie, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 5 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 6 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 7 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 8 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3)";
   $result = mysqli_query($db, $query);
 ?>
 
@@ -56,7 +56,7 @@
 				width: 100%;
 			}
 
-			td:hover {
+			/*td:hover {
 				background-color:#f5f5f5
 			}
 			a:link {
@@ -66,7 +66,7 @@
 			a:visited {
 				color: black;
 				text-decoration: none;
-			}
+			}*/
 		</style>
 	</head>
 	<body>
@@ -86,9 +86,9 @@
       <?php
          while ($row = mysqli_fetch_array($result)) {
            echo "<tr>";
-           echo "<td>".$row[Month]."</td>";
-           echo "<td>".$row[Movie]."</td>";
-           echo "<td>".$row[Orders]."</td>";
+           echo "<td>".$row['Month']."</td>";
+           echo "<td>".$row['Movie']."</td>";
+           echo "<td>".$row['Orders']."</td>";
            echo "</tr>";
          }
       ?>

@@ -38,15 +38,19 @@
 		$new_rating = $_POST['Rating'];
 		$new_title = $_POST['Title'];
 		$new_comment = $_POST['Comment'];
-
-    if ($flag) {
-      $sql = "INSERT INTO REVIEW (Title, Comment, Rating, Username, Movie_title) VALUES ('$new_title', '$new_comment', '$new_rating', '$user', '$movie')";
-      mysqli_query($db, $sql);
-      header("location: review.php");
-      // $error = "Successfully added review.";
+    if ($new_title == '') {
+      $error = "Review must contain a title at minimum.";
     } else {
-      $error = "You cannot review a movie you have not seen!";
+      if ($flag) {
+        $sql = "INSERT INTO REVIEW (Title, Comment, Rating, Username, Movie_title) VALUES ('$new_title', '$new_comment', '$new_rating', '$user', '$movie')";
+        mysqli_query($db, $sql);
+        header("location: review.php");
+        // $error = "Successfully added review.";
+      } else {
+        $error = "You cannot review a movie you have not seen.";
+      }
     }
+    
 	}
 
 ?>

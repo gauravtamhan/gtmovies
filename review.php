@@ -133,7 +133,7 @@
 			<hr>
 			<?php
 				$i = 0;
-				while ($i <= $cnt - 1) {
+				while ($i < $cnt) {
 					echo "<p class="."review"."> Title: ".$reviewtitles[$i]."</p>";
 					echo "<p class="."review"."> User: ".$usernames[$i]."</p>";
 					echo "<p class="."review"."> Rating: ".$ratings[$i]."</p>";

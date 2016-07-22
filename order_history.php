@@ -10,7 +10,6 @@
 	$result = mysqli_query($db, $query);
 	$count = mysqli_num_rows($result);
 	
-	$row = mysqli_fetch_assoc($result);
 
 	$orderIDs = array();
 	$movie_titles = array();
@@ -24,6 +23,7 @@
 
 	} 
 	  // print_r($orderIDs);
+	  // echo $count;
 ?>
 
 <html>
@@ -147,7 +147,7 @@
 			</tr>
 			<?php
 				$i = 0;
-				while ($i < $count - 1) {
+				while ($i < $count) {
 					echo "<tr class="."datatable".">";
 						echo "<td class="."datatable".">";
 							echo "<input type="."radio"." name="."A".">";

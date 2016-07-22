@@ -143,7 +143,24 @@
 				text-align: center;
 				width: 30%;
 				font-family: Georgia;
-				font-size: 20px;
+				font-size: 18px;
+			}
+
+			table.button-black {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	            height: 50px;
+	      	}
+
+			td.button-black {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				border: none;
 			}
 
 			a.button {
@@ -170,10 +187,20 @@
 	            margin-top: 0px;
 	            border-collapse: separate;
 	            height: 50px;
-	            width: 30%;
+	            width: 29.5%;
 	            border: none;
 	            border-spacing: 20px;
           }
+          input[type=submit] {
+            width: 100%;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+         }
 		</style>
 	</head>
 	<body>
@@ -186,12 +213,15 @@
 			
 			<?php
 				if ($count > 0) {
-		
+					echo "<form id='form1' action='select_time.php' method='post'>"; 
 					$i = 0;
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
 							echo "<td class="."datatable-selector".">";
-								echo "<input type="."radio"." name="."A".">";
+								// echo "<form action='' method='post'>";
+								// echo "<input type="."radio"." name="."selected_theater".">";
+								echo "<input type='radio' checked='checked' name='selected_theater' value='".$theaterNames[$i]."'>";
+								// echo "</form>";
 							echo "</td>";
 
 							echo "<td class="."datatable".">";
@@ -210,6 +240,7 @@
 						echo "</tr>";
 						$i++;
 					}
+					echo "</form>";
 				} else {
 					$error = "Search did not find any results.";
 				}
@@ -217,14 +248,14 @@
 		</table>
 
 
-		<table align="center" class="button">
-          <tr class="button">
-            <td class="button">
-              <a class="button" href="#"> Next </a>
+		<table align="center" class="button-black">
+          <tr class="button-black">
+            <td class="button-black">
+              <input type="submit" form="form1" value="Next"/>
             </td>
           </tr>
      	 </table>
-     	 <table align="center" class=" backbutton">
+     	 <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">
               <a class="button" href="choose_theater.php"> Back </a>

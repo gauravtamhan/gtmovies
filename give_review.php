@@ -151,6 +151,7 @@
             padding: 10px;
             border: none;
             font-family: Georgia;
+            cursor: hand;
          }
 
          .backbutton {
@@ -165,7 +166,7 @@
           table {
             margin-top: 10px;
             border-collapse: separate;
-            width: 100%;
+            width: 80%;
             border: none;
             border-spacing: 10px;
           }
@@ -175,16 +176,17 @@
           }
 
           td {
-            height: 40px;
+            /*height: 40px;*/
             text-align: center;
             width: 100%;
             font-family: Georgia;
-            font-size: 15px;
+            font-size: 16px;
           }
 
           a {
             display: block;
             width: 100%;
+            padding: 8px 0px;
           }
           
           td:hover {
@@ -222,7 +224,7 @@
                   						<option value = "3"> 3 out of 5 </option>
                   						<option value = "4"> 4 out of 5 </option>
                   						<option value = "5"> 5 out of 5 </option> </select> <br>
-                  <label> Title </label> <input type = "text" name = "Title" placeholder="Give your review a name..." />
+                  <label> Title </label> <input type = "text" name = "Title" autofocus placeholder="Give your review a name..." />
                   <label> Comment </label> <textarea name = "Comment" rows="10" cols="62" placeholder="Write you review here..."></textarea>
                
                   <input type = "submit" value = "Submit"/>

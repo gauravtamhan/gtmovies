@@ -71,7 +71,7 @@
 			}
 
 			td {
-				height: 50px;
+				/*height: 50px;*/
 				text-align: center;
 				width: 30%;
 				font-family: Georgia;
@@ -81,6 +81,7 @@
 			a {
 				display: block;
 				width: 100%;
+				padding: 10px 0px;
 			}
 			
 			td:hover {
@@ -112,7 +113,7 @@
 					<a href="review.php"> Movie Review </a>
 				</td>
 				<td>
-					<a href="#"> Buy Ticket </a>
+					<a href="choose_theater.php"> Buy Ticket </a>
 				</td>
 			</tr>
 		</table>

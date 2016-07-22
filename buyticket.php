@@ -1,8 +1,8 @@
-@@ -0,0 +1,156 @@
 <?php
 	include("config.php");
 	session_start(); 
 	$movie = $_SESSION['movie'];
+	$user = $_SESSION['current_user'];
 ?>
 <?php
 $query12 = "SELECT Name FROM PREFERS, THEATER WHERE Username = '$user' AND PREFERS.Theater_ID = THEATER.Theater_ID";

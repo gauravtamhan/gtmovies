@@ -47,7 +47,7 @@
 			}
 
 			td {
-				height: 50px;
+				/*height: 50px;*/
 				text-align: center;
 				width: 30%;
 				font-family: Georgia;
@@ -57,6 +57,7 @@
 			a {
 				display: block;
 				width: 100%;
+				padding: 10px 0px;
 			}
 			
 			td:hover {

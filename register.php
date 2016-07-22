@@ -96,6 +96,7 @@
             padding: 10px;
             border: none;
             font-family: Georgia;
+            cursor: hand;
          }
 
          .backbutton {
@@ -120,7 +121,7 @@
           }
 
           td {
-            height: 40px;
+          /*  height: 40px;*/
             text-align: center;
             width: 100%;
             font-family: Georgia;
@@ -130,6 +131,7 @@
           a {
             display: block;
             width: 100%;
+            padding: 8px 0px;
           }
           
           td:hover {
@@ -159,7 +161,7 @@
             <div style = "margin:20px">
                
                <form action = "" method = "post">
-                  <input type = "text" name = "username" placeholder="Username"/>
+                  <input type = "text" name = "username" placeholder="Username" autofocus/>
                   <input type = "text" name = "email" placeholder="Email Address"/>
                   <input type = "password" name = "password" placeholder="Password" />
                   <input type = "password" name = "conf_password" placeholder="Confirm Password" />

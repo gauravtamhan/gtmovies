@@ -56,17 +56,17 @@
 				width: 100%;
 			}
 
-			td:hover {
-				background-color:#f5f5f5
-			}
-			a:link {
-				color: black;
-				text-decoration: none;
-			}
-			a:visited {
-				color: black;
-				text-decoration: none;
-			}
+			/*td:hover {*/
+			/*	background-color:#f5f5f5*/
+			/*}*/
+			/*a:link {*/
+			/*	color: black;*/
+			/*	text-decoration: none;*/
+			/*}*/
+			/*a:visited {*/
+			/*	color: black;*/
+			/*	text-decoration: none;*/
+			/*}*/
 		</style>
 	</head>
 	<body>

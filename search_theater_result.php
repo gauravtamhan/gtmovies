@@ -209,9 +209,10 @@
 		
 		
 
-		<table class="datatable" align="center">
+		
 			
 			<?php
+				echo "<table class='datatable' align='center'>";
 				if ($count > 0) {
 					echo "<form id='form1' action='select_time.php' method='post'>"; 
 					$i = 0;
@@ -241,20 +242,20 @@
 						$i++;
 					}
 					echo "</form>";
+					echo "</table>";
+
+					echo "<table align='center' class='button-black'>";
+				    	echo "<tr class='button-black'>";
+				            echo "<td class='button-black'>";
+				              echo "<input type='submit' form='form1' value='Next'/>";
+				            echo "</td>";
+				          echo "</tr>";
+				     	 echo "</table>";
 				} else {
-					$error = "Search did not find any results.";
+					echo "<p> Search did not find any results. </p>";
 				}
 			?>			
-		</table>
-
-
-		<table align="center" class="button-black">
-          <tr class="button-black">
-            <td class="button-black">
-              <input type="submit" form="form1" value="Next"/>
-            </td>
-          </tr>
-     	 </table>
+		
      	 <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">

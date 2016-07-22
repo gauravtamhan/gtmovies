@@ -32,9 +32,9 @@
    //    $_SESSION['theater'] = $_POST['user_input'];
    //    //header("location: search_theater_result.php");
    // }
-
-
 ?>
+
+
 <html>
    
    <head>
@@ -50,7 +50,7 @@
 
          hr {
           width: 70%;
-          margin-bottom: 50px
+          margin-bottom: 30px
          }
 
          label {
@@ -115,7 +115,7 @@
          }
 
          form {
-            margin-top: 50px;
+            margin-top: 30px;
          }
 
          label {

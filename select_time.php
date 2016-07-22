@@ -6,14 +6,20 @@
 ?>
 
 <?php 
-		if (isset($_POST["saved_theater"])) {
-			$saved_theater = $_POST["saved_theater"];
-       		echo "Theater ".$saved_theater." has been chosen.";
-		}
+	if (isset($_POST["saved_theater"])) {
+		$saved_theater = $_POST["saved_theater"];
+   		echo "Theater ".$saved_theater." has been chosen.";
+	}
 
-		if (isset($_POST["selected_theater"])) {
-			$selected_theater = $_POST["selected_theater"];
-			echo "Theater ".$selected_theater." was selected from the search.";
-		}
+	if (isset($_POST["selected_theater"])) {
+		$selected_theater = $_POST["selected_theater"];
+		echo "Theater ".$selected_theater." was selected from the search.";
+	}
+	
+	if (isset($_POST['addToPrefferedTheaters']) && $_POST['addToPrefferedTheaters'] == 'Yes') {
+	    echo "Added to preffered theaters.";
+	}   
+ 
+
        
 ?>

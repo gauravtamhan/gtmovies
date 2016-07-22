@@ -53,7 +53,7 @@
 
 <html>
 	<head>
-		<title>Theater Results</title>
+		<title>Choose Theater</title>
 
 		<style>
 			h1 {
@@ -201,6 +201,12 @@
             font-family: Georgia;
             cursor: hand;
          }
+
+         input[type = checkbox] {
+         	font-size: 18px;
+         	float: middle;
+         }
+
 		</style>
 	</head>
 	<body>
@@ -208,9 +214,10 @@
 				
 			
 			<?php
+				echo "<form id='form1' action='select_time.php' method='post'>";
 				echo "<table class='datatable' align='center'>";
 				if ($count > 0) {
-					echo "<form id='form1' action='select_time.php' method='post'>"; 
+					 
 					$i = 0;
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
@@ -237,20 +244,30 @@
 						echo "</tr>";
 						$i++;
 					}
-					echo "</form>";
+					
 					echo "</table>";
 
+					// check box
+					// echo "<input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label> Save this theater </label>";
+					
 					echo "<table align='center' class='button-black'>";
+						echo "<tr class='button-black'>";
+				            echo "<td class='button-black'>";
+				              echo "<input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label> Save this theater </label>";
+				            echo "</td>";
+				        echo "</tr>";
 				    	echo "<tr class='button-black'>";
 				            echo "<td class='button-black'>";
 				              echo "<input type='submit' form='form1' value='Next'/>";
 				            echo "</td>";
-				          echo "</tr>";
-				     	 echo "</table>";
+				        echo "</tr>";
+				    echo "</table>";
+				    echo "</form>";
 				} else {
 					echo "<p> Search did not find any results. </p>";
 				}
 			?>			
+		
 		
      	 <table align="center" class="backbutton">
           <tr class="button">

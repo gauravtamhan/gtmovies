@@ -205,11 +205,7 @@
 	</head>
 	<body>
 		<h1> Search Results </h1>
-		
-		
-		
-
-		
+				
 			
 			<?php
 				echo "<table class='datatable' align='center'>";

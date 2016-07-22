@@ -25,13 +25,13 @@
 	  // print_r($orderIDs);
 	  // echo $count;
 
-	//--------------------------------------------------
+	//-------------------------------------------------- To Do: Calculate total order cost
 
-	$query2 = "SELECT Order_ID AS Order, Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price AS Total_cost
-	FROM ORDERS, SYSTEM_INFO";
+	// $query2 = "SELECT Order_ID AS Order, Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price AS Total_cost
+	// FROM ORDERS, SYSTEM_INFO";
 
-	$result2 = mysqli_query($db, $query2);
-	$cnt = mysqli_num_rows($result2);
+	// $result2 = mysqli_query($db, $query2);
+	// $cnt = mysqli_num_rows($result2);
 ?>
 
 <html>

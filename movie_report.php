@@ -5,14 +5,8 @@
 ?>
 
 <?php
-  $query = "SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, Movie, COUNT(*) AS Orders FROM ORDER WHERE MONTH(`Date`) = 5 GROUP BY Movie ORDER BY COUNT(*) LIMIT 3
-UNION ALL
-SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, Movie, COUNT(*) AS Orders FROM ORDER WHERE MONTH(`Date`) = 6 GROUP BY Movie ORDER BY COUNT(*) LIMIT 3
-UNION ALL
-SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, Movie, COUNT(*) AS Orders FROM ORDER WHERE MONTH(`Date`) = 7 GROUP BY Movie ORDER BY COUNT(*) LIMIT 3
-UNION ALL
-SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, Movie, COUNT(*) AS Orders FROM ORDER WHERE MONTH(`Date`) = 8 GROUP BY Movie ORDER BY COUNT(*) LIMIT 3
-";
+  $query = "(SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 5 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 6 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 7 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 8 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3)";
+  $result = mysqli_query($db, $query);
 ?>
 
 <html>
@@ -90,7 +84,7 @@ SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, Movie, COUNT(*) AS Or
         <td>Orders</td>
       </tr>
       <?php
-         while ($row = mysql_fetch_array($query)) {
+         while ($row = mysqli_fetch_array($result)) {
            echo "<tr>";
            echo "<td>".$row[Month]."</td>";
            echo "<td>".$row[Movie]."</td>";

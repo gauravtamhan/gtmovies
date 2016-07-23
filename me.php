@@ -96,7 +96,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="#"> My Preferred Theater </a>
+					<a href="prefer_history.php"> My Preferred Theater </a>
 				</td>
 			</tr>
 			<tr>

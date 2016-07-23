@@ -37,6 +37,15 @@
 	  // echo $count;
 ?>
 
+<?php
+	// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	// 	$cardholder_name = $_POST['nameOnCard'];
+	// 	$card_num = $_POST['cardNum'];
+	// 	$card_cvv = $_POST['cardCVV'];
+	// 	$card_exp = $_POST['cardExp'];
+	// 	header("location: confirmation.php");
+	// }
+?>
 
 <html>
    
@@ -236,7 +245,7 @@
 				
             <div style = "margin:20px">
                
-               <form class="top" action = "#" method = "post"> 
+               <form class="top" action = "confirmation.php" method = "post"> 
                   <label class="fancy"> Use a saved card </label><select name="saved_card">  
                                  <?php
                                     $i = 0;
@@ -252,14 +261,14 @@
                <br>
              
 
-               <form class="bottom" action = "#" method = "post"> 
+               <form class="bottom" action = "confirmation.php" method = "post"> 
                		<p class="mini-head"> Use a new card </p>
                   <label class="fancy"> Name on Card </label><input type = "text" name= "nameOnCard" />
                   <label class="fancy"> Card Number </label><input type = "number" name= "cardNum" />
                   <label class="fancy"> CVV </label><input type = "number" name= "cardCVV" />
                   <label class="fancy"> Expiration Date </label><input type = "date" name= "cardExp" placeholder="yyyy-mm-dd"/>
 
-                  <input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label class='original'> Save this card for later use </label>
+                  <input type='checkbox' name='addToSavedCards' value='Yes' /> <label class='original'> Save this card for later use </label>
                   
                   <input class="lower" type = "submit" name= "search" value = 'Buy Ticket'/><br />
                </form>

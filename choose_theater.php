@@ -20,18 +20,6 @@
 
    }
 
-   
-   // if (isset($_POST['saved_theater'])) {
-   //    $theater_choice = $_POST['saved_theater'];
-   //    $_SESSION['selected_theater'] = $_POST['choose'];
-   //    echo "theater has been selected";
-   // }
-
-
-   // if(isset($_POST['search'])) {
-   //    $_SESSION['theater'] = $_POST['user_input'];
-   //    //header("location: search_theater_result.php");
-   // }
 ?>
 
 

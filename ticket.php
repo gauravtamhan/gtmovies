@@ -169,7 +169,7 @@
                   						<option value = "3"> 3 </option>
                   						<option value = "4"> 4 </option>
                   						<option value = "5"> 5 </option> </select> <br>
-                  <input type = "submit" value = "Submit"/>
+                  <input type = "submit" value = "Next"/>
                </form>
 					
             </div>

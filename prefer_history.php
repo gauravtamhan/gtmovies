@@ -40,15 +40,6 @@
 
 	//aleta HSnAWhqJ
 
-
-	//-------------------------------------------------- To Do: Calculate total order cost
-
-	// $query2 = "SELECT Order_ID AS Order, Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price AS Total_cost
-	// FROM ORDERS, SYSTEM_INFO";
-
-	// $result2 = mysqli_query($db, $query2);
-	// $cnt = mysqli_num_rows($result2);
-
 ?>
 
 <html>
@@ -227,18 +218,18 @@
 		
       
 
-       <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
+      
 
 		<table class="datatable" align="center">
 			
 			<?php
 				$i = 0;
 				?>
-				<form action ="" method ="post">
+				<form action="" method="post">
 				<?php
 					while ($i < $count) {
 						echo "<tr>";
-							echo "<td rowspan="."2"."class="."datatable-selector"."> <input type=radio name='theater_radio' checked='checked' value='$theater[$i]' ></td>";
+							echo "<td rowspan="."2"."class="."datatable-selector"."> <input type='radio' name='theater_radio' checked='checked' value='$theater[$i]' ></td>";
 								echo "<td class="."datatabletheatername".">";
 								echo $name[$i];
 								echo "</td>";

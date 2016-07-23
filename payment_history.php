@@ -22,39 +22,38 @@
 
 	} 
 
+	// if (isset($_POST['order_radio'])) {
 
+	// }
+	// if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST['delete_card']) && isset($_POST['order_radio'])) {
 		$card = $_POST['order_radio'];
-		$query12 = "DELETE FROM PAYMENT_INFO WHERE Card_No = '$card'";
-		mysqli_query($db,$query12);
+		$query13 = "DELETE FROM PAYMENT_INFO WHERE Card_No = '$card'";
+		mysqli_query($db,$query13);
+		// if (mysqli_query($db,$query12)) {
+		// 	echo "Deleted card number: ".$card." successfully.";
+		// } else {
+		// 	echo mysqli_error($db);
+		// }
 		header("location: payment_history.php");
 	}
-	  // print_r($orderIDs);
-	  // echo $count;
+	  // print_r($cardno);
 
 	//aleta HSnAWhqJ
 
-
-	//-------------------------------------------------- To Do: Calculate total order cost
-
-	// $query2 = "SELECT Order_ID AS Order, Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price AS Total_cost
-	// FROM ORDERS, SYSTEM_INFO";
-
-	// $result2 = mysqli_query($db, $query2);
-	// $cnt = mysqli_num_rows($result2);
 
 ?>
 
 <html>
 	<head>
-		<title>Payment Saved</title>
+		<title>Payment Info</title>
 
 		<style>
 			h1 {
 				font-style: italic;
 				font-size: 50px;
 				text-align: center;
-				padding-top: 30px;
+				padding-top: 50px;
 			}
 
 			h3 {
@@ -75,7 +74,7 @@
 			}
 
 			table.datatable {
-				margin-top: 60px;
+				margin-top: 10px;
 	      		border-collapse: collapse;
 	      		width: 800px;
 	      		border: 1px solid black;
@@ -148,15 +147,41 @@
 	            height: 50px;
 	            border: none;
 	            border-spacing: 20px;
-          }
+          	}
+
+          	input[type=submit] {
+	            width: 100%;
+	            font-size: 18px;
+	            background-color: black;
+	            color: white;
+	            padding: 10px;
+	            border: none;
+	            font-family: Georgia;
+	            cursor: hand;
+        	}
+
+        	table.button-black {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	            height: 50px;
+	      	}
+
+			td.button-black {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				border: none;
+			}
+
 		</style>
 	</head>
 	<body>
-		<h1> Payment Saved </h1>
-		
-      
-
-       <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
+		<h1> My Payment Info </h1>
+	
 
 		<table class="datatable" align="center">
 			<tr class="datatable">
@@ -168,12 +193,12 @@
 			<?php
 				$i = 0;
 				?>
-				<form action ="" method ="post">
+				<form action="" method="POST">
 				<?php
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
 							echo "<td class="."datatable".">";
-								echo "<input type=radio name='order_radio' value='$cardno[$i]' >";
+								echo "<input type='radio' name='order_radio' checked='checked' value='$cardno[$i]' >";
 							echo "</td>";
 
 							echo "<td class="."datatable".">";
@@ -194,17 +219,12 @@
 					}
 				?>
 
-
-
-
-
 		</table>
 		
-		
-		<table align="center" class="button backbutton">
-          <tr class="button">
-            <td class="button">
-              <a class="button"> <input type = "submit" name = "delete_card" value ="Delete Card"></a>
+		<table align="center" class="button-black">
+          <tr class="button-black">
+            <td class="button-black">
+              <a class="button"> <input type = "submit" name ="delete_card" value ="Delete Card"> </a>
             </td>
           </tr>
           <tr class="button">
@@ -213,7 +233,9 @@
             </td>
           </tr>
         </table>
+
         </form>
+
 	</body>
 </html>
 

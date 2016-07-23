@@ -15,14 +15,17 @@
 	$childTicketCount = $_SESSION["numChildTickets"];
 
 	$totalTicketCount = $adultTicketCount + $seniorTicketCount + $childTicketCount;
+	echo "Total tickets: ".$totalTicketCount.". Adult tickets: ".$adultTicketCount.". Senior tickets: ".$seniorTicketCount.". Child tickets: ".$childTicketCount;
 
 	
 ?>
 
 <?php 
+	date_default_timezone_set('America/New_York');
 	$date = date("Y-m-d");
 	$time = date("h:i:s");
-	// retrieves the saved card number the user selected when purchasing a ticket
+
+	// retrieves the saved card number the user selected when purchasing a ticket then adds the order into the database.
 	if (isset($_POST["saved_card"])) {
 		$saved_card_number = $_POST["saved_card"];
 		
@@ -33,12 +36,14 @@
 		$theaterID = $row["Theater_ID"];
 		$status = "Unused";
 		$sql = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID) VALUES ('$date', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$time', '$status', '$user', '$saved_card_number', '$movie', '$theaterID')";
-		// mysqli_query($db, $sql);
-		if (mysqli_query($db, $sql)) {
-	    	echo " Added order successfully at ".$time;
-	    } else {
-	    	echo mysqli_error($db);
-	    }
+		mysqli_query($db, $sql);
+		// if (mysqli_query($db, $sql)) {
+	 //    	echo " Added order successfully at ".$time;
+	 //    } else {
+	 //    	echo mysqli_error($db);
+	 //    }
+
+		
 
 	} // put a else here
 

@@ -14,6 +14,11 @@
       $row = mysqli_fetch_assoc($result);
       
       $count = mysqli_num_rows($result);
+
+      $sql_manager = "SELECT * FROM MANAGER WHERE Username = '$myusername' and Password = '$mypassword'";
+      $result_manager = mysqli_query($db, $sql_manager);
+      $row_manager = mysqli_fetch_assoc($result_manager);
+      $count_manager = mysqli_num_rows($result_manager);
       // echo $count;
 
       $user = array();
@@ -25,6 +30,9 @@
       if($count == 1) {
          $_SESSION['current_user'] = $myusername;
          header("location: home.php");
+      } else if ($count_manager == 1) {
+         $_SESSION['current_user'] = $myusername;
+         header("location: manager_view.php");
       } else {
          $error = "Your Username or Password is invalid";
       }
@@ -33,7 +41,7 @@
 <html>
    
    <head>
-      <title>GT Movies</title>
+      <title>Login Page</title>
       
       <style type = "text/css">
          body {

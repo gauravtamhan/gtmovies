@@ -96,13 +96,13 @@
 		    // 	echo " Added '$card_num' with name on card as '$' to PAYMENT_INFO successfully.";
 		    // } else {
 		    // 	echo mysqli_error($db);
-		    }
+		    // }
 		}
 
 		$sql3 = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID)
 				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$card_num', '$movie', '$theaterID')";
 
-		// mysqli_query($db, $sql3);
+		mysqli_query($db, $sql3);
 
 		// gets the order ID from the recently placed order
 		$sql4 = "SELECT Order_ID FROM ORDERS WHERE `Date` = '$dateOfOrder'
@@ -117,12 +117,12 @@
 				AND Movie_title = '$movie'
 				And Theater_ID = '$theaterID'";
 
-		// $ans2 = mysqli_query($db, $sql4);
-		// $tuple2 = mysqli_fetch_row($ans2);
-		// $order_number = $tuple2[0];
+		$ans2 = mysqli_query($db, $sql4);
+		$tuple2 = mysqli_fetch_row($ans2);
+		$order_number = $tuple2[0];
 	}
 
-	// echo $order_number;
+	echo $order_number;
    
 ?>
 

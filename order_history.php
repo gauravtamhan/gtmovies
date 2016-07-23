@@ -39,7 +39,7 @@
 
 	if (isset($_POST['view_detail']) && isset($_POST['order_radio'])) {
 		$_SESSION['order_ID'] = $_POST['order_radio'];
-		header("location: order_detail.php");
+		// header("location: order_detail.php");
 	}
 	  // print_r($orderIDs);
 	  // echo $count;
@@ -87,7 +87,7 @@
 			}
 
 			table.datatable {
-				margin-top: 60px;
+				margin-top: 20px;
 	      		border-collapse: collapse;
 	      		width: 800px;
 	      		border: 1px solid black;
@@ -113,6 +113,23 @@
 			}
 
 			
+			table.button-black {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	            height: 50px;
+	      	}
+
+			td.button-black {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				border: none;
+			}
+
 
 			table.button {
 				margin-top: 60px;
@@ -154,6 +171,15 @@
 				text-decoration: none;
 			}
 
+			table.backbutton {
+	            margin-top: 0px;
+	            border-collapse: separate;
+	            height: 50px;
+	            width: 29.5%;
+	            border: none;
+	            border-spacing: 20px;
+          	}
+
 			.backbutton {
 	            margin-top: 0px;
 	            border-collapse: separate;
@@ -161,18 +187,93 @@
 	            border: none;
 	            border-spacing: 20px;
           }
+
+          input[type=submit].details {
+            width: 100%;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+         }
+
+         input[type=submit].search {
+            /*width: 20%;*/
+            font-size: 18px;
+            border-radius: 3px;
+            background-color: black;
+            color: white;
+            padding: 6px 20px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+         }
+
+         label.fancy {
+     		text-align: left;
+			padding-top: 10px;
+			padding-bottom: 1px;
+			font-size: 20px;
+			color: #4d4d4d;
+			font-family: Verdana;
+			width: 80px;
+			display: inline-block;
+         }
+
+         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+      		    -webkit-appearance: none;
+      		    -moz-appearance: none;
+      		    appearance: none;
+      		    margin: 0; 
+		    }
+
+         input[type=number] {
+             width: 300px;
+             padding: 5px 10px;
+             margin-top: 20px;
+             margin-left: 20px;
+             margin-right: 20px;
+
+             box-sizing: border-box;
+             border: 1px solid #ccc;
+             -webkit-transition: 0.5s;
+             transition: 0.5s;
+             outline: none;
+             border-radius: 2px;
+             font-family: Georgia;
+             font-size: 15px;
+             display: inline-block;
+         }
+
+         input[type=number]:focus {
+             border: 1px solid black;
+         }
+
+         form.top {
+         	/*border: 1px solid black;*/
+         	padding-top: 20px;
+         	/*padding: 20px;*/
+         	/*padding-left: 40px;*/
+         	width: 100%;
+         	/*padding-left: 30px;	*/
+         	padding-bottom: 0px;
+         	text-align: center;
+         }
+
 		</style>
 	</head>
 	<body>
 		<h1> Order History </h1>
 		
-       <form action = "" method = "post"> 
-          <label> Order_ID </label>
-          <input type = "text" name= "Order_ID" placeholder="Search..." />
-          <input type = "submit" name= "search" value = 'Search'/><br />
+       <form class="top" action = "" method = "post"> 
+          <label class="fancy"> Order_ID </label>
+          <input type = "number" name= "Order_ID" placeholder="Search..." />
+          <input type = "submit" class="search" name= "search" value = 'Search'/><br />
        </form>
 
-       <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
+       <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px; text-align:center;"> <?php echo "$error" ?> </div>
 
 		<table class="datatable" align="center">
 			<tr class="datatable">
@@ -189,7 +290,7 @@
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
 							echo "<td class="."datatable".">";
-								echo "<input type=radio name='order_radio' value='$orderIDs[$i]' >";
+								echo "<input type=radio name='order_radio' checked='checked' value='$orderIDs[$i]' >";
 							echo "</td>";
 
 							echo "<td class="."datatable".">";
@@ -213,13 +314,16 @@
 		</table>
 		
 		
-		<table align="center" class="button backbutton">
-          <tr class="button">
-            <td class="button">
-              <a class="button"> <input type = "submit" name = "view_detail" value ="View Details"></a>
+		<table align="center" class="button-black">
+          <tr class="button-black">
+            <td class="button-black">
+              <a class="button"> <input class="details" type = "submit" name = "view_detail" value ="View Details"></a>
             </td>
           </tr>
-          <tr class="button">
+      	</table>
+
+      	<table align='center' class="backbutton">
+          <tr class="button backbutton">
             <td class="button">
               <a class="button" href="Me.php"> Back </a>
             </td>

@@ -149,6 +149,15 @@
 	            border-spacing: 20px;
           	}
 
+          	table.backbutton {
+	            margin-top: 0px;
+	            border-collapse: separate;
+	            height: 50px;
+	            width: 29.5%;
+	            border: none;
+	            border-spacing: 20px;
+          	}
+
           	input[type=submit] {
 	            width: 100%;
 	            font-size: 18px;
@@ -193,7 +202,7 @@
 			<?php
 				$i = 0;
 				?>
-				<form action="" method="POST">
+				<form action='' method="POST">
 				<?php
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
@@ -227,6 +236,9 @@
               <a class="button"> <input type = "submit" name ="delete_card" value ="Delete Card"> </a>
             </td>
           </tr>
+        </table>
+
+          <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">
               <a class="button" href="Me.php"> Back </a>

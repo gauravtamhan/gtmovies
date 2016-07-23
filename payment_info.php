@@ -14,265 +14,188 @@
 	$seniorTicketCount = $_SESSION["numSeniorTickets"];
 	$childTicketCount = $_SESSION["numChildTickets"];
 
-	// echo $user." bought ".$adultTicketCount." adult tickets, ".$seniorTicketCount." senior tickets, ".$childTicketCount." child tickets.";
+	echo $user." bought ".$adultTicketCount." adult tickets, ".$seniorTicketCount." senior tickets, ".$childTicketCount." child tickets.";
 ?>
 
 <?php
-	$query = "SELECT Card_No, Name_on_Card, Expiration_Date  FROM PAYMENT_INFO WHERE Username = '$user' AND Saved = 1";
+	// $query = "SELECT Card_No, Name_on_Card, Expiration_Date  FROM PAYMENT_INFO WHERE Username = '$user' AND Saved = 1 ";
 
-	$result = mysqli_query($db, $query);
-
-	$count = mysqli_num_rows($result);
+	// $result = mysqli_query($db, $query);
+	// $count = mysqli_num_rows($result);
 	
 
-	$saved_cards = array();
+	// $card_no = array();
+	// $name_card = array();
+	// $expiration = array();
 
-	while ($row = mysqli_fetch_assoc($result)) {
+	// while ($row = mysqli_fetch_assoc($result)) {
 
-    	array_push($saved_cards, $row["Card_No"]);
-    	
+ //    	array_push($card_no, $row["Card_No"]);
+ //    	array_push($name_card, $row["Name_on_Card"]);
+ //    	array_push($expiration, $row["Expiration_Date"]);
 
-	} 
-	  // print_r($saved_cards);
-	  // echo $count;
+	// } 
+	//   // print_r($orderIDs);
+	//   // echo $count;
 ?>
 
+<!-- <html>
+	<head>
+		<title>Payment Information</title>
 
-<html>
-   
-   <head>
-      <title>Buy Tickets</title>
+		<style>
+			h1 {
+				font-style: italic;
+				font-size: 50px;
+				text-align: center;
+				padding-top: 30px;
+			}
 
-      <style>
-      	h1 {
-			font-style: italic;
-			font-size: 50px;
-			text-align: center;
-			padding-top: 20px;
-		}
+			h3 {
+				text-align: center;
+			}
 
-		h2 {
-			text-align: center;
-			padding-top: 10px;
-			padding-bottom: 1px;
-			font-size: 35px;
-			color: #4d4d4d;
-			font-family: Verdana;
-			font-style: italic;
-			font-weight: lighter;
-			/*width: 70%;
-			display: inline-block;*/
-		}
-
-		hr {
-			width: 60%;
-		}
-
-		p.subtitle {
-			font-size: 25px;
-			font-family: Georgia;
-			font-style: italic;
-			padding-top: 5px;
-			padding-left: 5px;
-			/*display: inline-block;*/
-			text-align: center;
-			color: #4d4d4d;
-		}
-
-		label.fancy {
-         		text-align: left;
-				padding-top: 10px;
-				padding-bottom: 1px;
+			p {
+				text-align: center;
+				padding-top: 40px;
+				padding-bottom: 80px;
 				font-size: 20px;
-				color: #4d4d4d;
+				color: grey;
 				font-family: Verdana;
-				width: 180px;
-				display: inline-block;
-         }
+			}
 
-         p.mini-head {
-         	text-align: left;
-			padding-top: 10px;
-			padding-bottom: 1px;
-			font-weight: bold;
-			font-size: 20px;
-			color: #4d4d4d;
-			font-family: Verdana;
-         }
+			hr {
+				width: 30%;
+			}
 
-         .container {
-         	width: 620px;
-         	border: none;
-         	margin-top:30px;
+			table.datatable {
+				margin-top: 60px;
+	      		border-collapse: collapse;
+	      		width: 800px;
+	      		border: 1px solid black;
+	      	
+	      	}
 
-         }
+	      	th.datatable, td.datatable {
+	    		padding: 5px;
+			}
 
-         select {
-             -webkit-appearance: button;
-             -webkit-border-radius: 2px;
-             -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-             -webkit-padding-end: 20px;
-             -webkit-padding-start: 2px;
-             -webkit-user-select: none;
-             background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
-             background-position: 97% center;
-             background-repeat: no-repeat;
-             border: 1px solid #AAA;
-             color: #555;
-             font-size: inherit;
-             margin: 20px;
-             overflow: hidden;
-             padding: 5px 10px;
-             text-overflow: ellipsis;
-             white-space: nowrap;
-             width: 120px;
-          }
+			th.datatable {
+				height: 55px;
+				font-family: Georgia;
+				font-size: 22px;
+				border-bottom: 1px solid black;
+			}
 
-          input[type=submit].upper {
-            font-size: 15px;
-            background-color: black;
-            color: white;
-            padding: 7px 15px;
-            border: none;
-            font-family: Georgia;
-            cursor: hand;
-            border-radius: 3px;
-            display: inline;
-         }
+			td.datatable {
+				height: 50px;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 20px;
+			}
 
-         input[type=submit].lower {
-            font-size: 15px;
-            background-color: black;
-            color: white;
-            padding: 7px 15px;
-            border: none;
-            font-family: Georgia;
-            cursor: hand;
-            border-radius: 3px;
-            display: block;
-            margin: 20px 0px;
-         }
-
-         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
-		    -webkit-appearance: none;
-		    -moz-appearance: none;
-		    appearance: none;
-		    margin: 0; 
-		}
-
-         input[type=text], input[type=number], input[type=date] {
-             width: 300px;
-             padding: 5px 10px;
-             margin-top: 20px;
-             margin-left: 20px;
-             margin-right: 20px;
-
-             box-sizing: border-box;
-             border: 1px solid #ccc;
-             -webkit-transition: 0.5s;
-             transition: 0.5s;
-             outline: none;
-             border-radius: 2px;
-             font-family: Georgia;
-             font-size: 15px;
-             display: inline-block;
-         }
-
-         input[type=date] {
-         	margin-bottom: 50px;
-         }
-
-         input[type=text]:focus, input[type=number]:focus, input[type=date]:focus {
-             border: 1px solid black;
-         }
-
-         form.top {
-         	border: 1px solid black;
-         	padding-top: 20px;
-         	padding: 20px;
-         	padding-left: 40px;
-         /*	width: 260px;
-         	padding-left: 30px;	
-         	padding-bottom: 10px;*/
-         }
-
-         form.bottom {
-         	border: 1px solid black;
-         	padding: 20px;
-         	/*padding-left: 40px;*/
-         /*	width: 260px;
-         	padding-left: 30px;	
-         	padding-bottom: 10px;*/
-         }
-
-         input[type = checkbox] {
-         	font-size: 18px;
-         	float: middle;
-         	display: inline-block;
-         	width: 20px;
-         	
-         }
-
-         label.original {
-         	display: inline-block;
-         }
-
-      </style>
-
-   </head>
-   
-   <body>
-      <h1> Buy a Ticket </h1>
-      <hr>
-      <p class="subtitle"> Movie: <?php echo $movie?> </p>
-      <p class="subtitle"> Location: <?php echo $theater?> </p>
-      <p class="subtitle"> Date: <?php echo $formattedDate?> </p>
-      <hr>
-      <h2> Payment Information </h2>
-
-      <div align = "center">
-         <div class="container" align = "left">
-          
-				
-            <div style = "margin:20px">
-               
-               <form class="top" action = "#" method = "post"> 
-                  <label class="fancy"> Use a saved card </label><select name="saved_card">  
-                                 <?php
-                                    $i = 0;
-                                    while ($i < $count) {
-                                       $out = "****".substr($saved_cards[$i], -4);
-                                       echo "<option value="."'".$saved_cards[$i]."'>".$out."</option>";
-                                       $i++;
-                                    }
-                                 ?>                    
-                              </select>
-                  <input class="upper" type = "submit" name= "choose" value ='Use' />
-               </form>
-               <br>
-             
-
-               <form class="bottom" action = "#" method = "post"> 
-               		<p class="mini-head"> Use a new card </p>
-                  <label class="fancy"> Name on Card </label><input type = "text" name= "nameOnCard" />
-                  <label class="fancy"> Card Number </label><input type = "number" name= "cardNum" />
-                  <label class="fancy"> CVV </label><input type = "number" name= "cardCVV" />
-                  <label class="fancy"> Expiration Date </label><input type = "date" name= "cardExp" placeholder="yyyy-mm-dd"/>
-
-                  <input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label class='original'> Save this card for later use </label>
-                  
-                  <input class="lower" type = "submit" name= "search" value = 'Buy Ticket'/><br />
-               </form>
-               <br>
-               <br>
-
-            </div>
-				
-         </div>
 			
-      </div>
+
+			table.button {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	      	}
+
+	      	th.button, td.button {
+	    		border: 1px solid black;
+			}
+
+			td.button {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				font-size: 20px;
+			}
+
+			a.button {
+				display: block;
+				width: 100%;
+				padding: 10px 0px;
+			}
+			
+			td.button:hover {
+				background-color:#f5f5f5
+			}
+
+			a.button:link {
+				color: black;
+				text-decoration: none;
+			}
+
+			a.button:visited {
+				color: black;
+				text-decoration: none;
+			}
+
+			.backbutton {
+	            margin-top: 0px;
+	            border-collapse: separate;
+	            height: 50px;
+	            border: none;
+	            border-spacing: 20px;
+          }
+		</style>
+	</head>
+	<body>
+		<h1> My Payment Infomation </h1>
 		
-   </body>
-   
-</html>
+		
+		
+
+		<table class="datatable" align="center">
+			<tr class="datatable">
+				<th class="datatable"> Select </th>
+				<th class="datatable"> Card Number </th>
+				<th class="datatable"> Name on Card </th>
+				<th class="datatable"> Exp Date </th>
+			</tr>
+			<?php
+				// $i = 0;
+				// while ($i < $count) {
+				// 	echo "<tr class="."datatable".">";
+				// 		echo "<td class="."datatable".">";
+				// 			echo "<input type="."radio"." name="."A".">";
+				// 		echo "</td>";
+
+				// 		echo "<td class="."datatable".">";
+				// 			echo $card_no[$i];
+				// 		echo "</td>";
+
+				// 		echo "<td class="."datatable".">";
+				// 			echo $name_card[$i];
+				// 		echo "</td>";
+
+				// 		echo "<td class="."datatable".">";
+				// 			echo $expiration[$i];
+				// 		echo "</td>";
+
+				// 	echo "</tr>";
+				// 	$i++;
+				// }
+			?>			
+		</table>
+		<table align="center" class="button backbutton">
+          <tr class="button">
+            <td class="button">
+              <a class="button" href="#"> Delete </a>
+            </td>
+          </tr>
+          <tr class="button">
+            <td class="button">
+              <a class="button" href="Me.php"> Back </a>
+            </td>
+          </tr>
+        </table>
+
+	</body>
+</html> -->
 

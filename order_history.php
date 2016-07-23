@@ -2,9 +2,8 @@
    include("config.php");
    session_start();
    $user = $_SESSION["current_user"];
-?>
 
-<?php
+	$error = "";
 	$query = "SELECT Order_ID, Movie_title, Status FROM ORDERS WHERE Username = '$user'";
 
 	$result = mysqli_query($db, $query);
@@ -22,8 +21,29 @@
     	array_push($statuses, $row["Status"]);
 
 	} 
+
+	if (isset($_POST['search'])) {
+		$Order_ID_input = trim($_POST['Order_ID']);
+		$Order_ID_query = "SELECT Order_ID FROM ORDERS WHERE Order_ID = '$Order_ID_input'";
+		$Order_ID_result = mysqli_query($db, $Order_ID_query);
+		$count_row = mysqli_num_rows($Order_ID_result);
+		if ($count_row == 0) {
+			$error = "The Order ID was not found.";
+		} else {
+			$_SESSION['order_ID'] = $Order_ID_input;
+			$_SESSION['order_valid'] = 1;
+			header("location: order_detail.php");
+		}
+
+	}
+
+	if (isset($_POST['view_detail']) && isset($_POST['order_radio'])) {
+		$_SESSION['order_ID'] = $_POST['order_radio'];
+		header("location: order_detail.php");
+	}
 	  // print_r($orderIDs);
 	  // echo $count;
+	//aleta HSnAWhqJ
 ?>
 
 <html>
@@ -135,8 +155,13 @@
 	<body>
 		<h1> Order History </h1>
 		
-		
-		
+       <form action = "" method = "post"> 
+          <label> Order_ID </label>
+          <input type = "text" name= "Order_ID" placeholder="Search..." />
+          <input type = "submit" name= "search" value = 'Search'/><br />
+       </form>
+
+       <div style = "font-size:11px; color:#cc0000; margin-top:10px; height:30px"> <?php echo "$error" ?> </div>
 
 		<table class="datatable" align="center">
 			<tr class="datatable">
@@ -147,33 +172,40 @@
 			</tr>
 			<?php
 				$i = 0;
-				while ($i < $count) {
-					echo "<tr class="."datatable".">";
-						echo "<td class="."datatable".">";
-							echo "<input type="."radio"." name="."A".">";
-						echo "</td>";
+				?>
+				<form action ="" method ="post">
+				<?php
+					while ($i < $count) {
+						echo "<tr class="."datatable".">";
+							echo "<td class="."datatable".">";
+								echo "<input type=radio name='order_radio' value='$orderIDs[$i]' >";
+							echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $orderIDs[$i];
-						echo "</td>";
+							echo "<td class="."datatable".">";
+								echo $orderIDs[$i];
+		
+							echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $movie_titles[$i];
-						echo "</td>";
+							echo "<td class="."datatable".">";
+								echo $movie_titles[$i];
+							echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $statuses[$i];
-						echo "</td>";
+							echo "<td class="."datatable".">";
+								echo $statuses[$i];
+							echo "</td>";
 
-					echo "</tr>";
-					$i++;
-				}
-			?>			
+						echo "</tr>";
+						$i++;
+					}
+				?>
+
 		</table>
+		
+		
 		<table align="center" class="button backbutton">
           <tr class="button">
             <td class="button">
-              <a class="button" href="#"> View Detail </a>
+              <a class="button"> <input type = "submit" name = "view_detail" value ="View Details"></a>
             </td>
           </tr>
           <tr class="button">
@@ -182,7 +214,7 @@
             </td>
           </tr>
         </table>
-
+</form>
 	</body>
 </html>
 

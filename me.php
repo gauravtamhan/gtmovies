@@ -91,7 +91,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="payment_info.php"> My Payment Information </a>
+					<a href="payment_history.php"> My Payment Information </a>
 				</td>
 			</tr>
 			<tr>

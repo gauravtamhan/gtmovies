@@ -6,8 +6,11 @@
    if($_SERVER["REQUEST_METHOD"] == "POST") {
    		$count = 0;
    		$mang_pass_sql = "SELECT * FROM SYSTEM_INFO";
-   		$mang_pass_result = mysqli_query($db, '$mang_pass_sql');
-   		$mang_pass = $mang_pass_result[2];
+   		// $mang_pass_result = mysqli_query($db, '$mang_pass_sql');
+   		// $mang_pass = $mang_pass_result[2];
+      $mang_pass_result = mysqli_query($db, $mang_pass_sql);
+      $row = mysqli_fetch_assoc($mang_pass_result);
+      $mang_pass = $row["Manager_password"];
 
       
       if ($_POST['password'] == "" || $_POST['conf_password'] == "" || $_POST['email'] == "" || $_POST['username'] == "") {

@@ -6,7 +6,7 @@
 
 <html>
 	<head>
-		<title>Manager View</title>
+		<title>Manager Portal</title>
 
 		<style>
 			h1 {
@@ -18,14 +18,18 @@
 			h3 {
 				text-align: center;
 			}
-			p {
+
+			p.subtitle {
+				font-size: 25px;
+				font-family: Georgia;
+				font-style: italic;
+				padding-top: 5px;
+				padding-left: 5px;
+				/*display: inline-block;*/
 				text-align: center;
-				padding-top: 40px;
-				padding-bottom: 80px;
-				font-size: 20px;
-				color: grey;
-				font-family: Verdana;
+				color: #4d4d4d;
 			}
+
 			hr {
 				width: 30%;
 			}
@@ -40,7 +44,7 @@
 	    		border: 1px solid black;
 			}
 			td {
-				height: 50px;
+				/*height: 50px;*/
 				text-align: center;
 				width: 30%;
 				font-family: Georgia;
@@ -49,6 +53,7 @@
 			a {
 				display: block;
 				width: 100%;
+				padding: 10px 0px;
 			}
 
 			td:hover {
@@ -65,12 +70,9 @@
 		</style>
 	</head>
 	<body>
-		<h1> Choose Functionality </h1>
-		<hr>
-		<h3> <?php echo $user ?> </h3>
-		<hr>
-
-
+		<h1> Manager Portal </h1>
+		<p class="subtitle"> Choose Functionality</p>
+		
 
 		<table align="center">
 			<tr>
@@ -85,7 +87,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="home.php"> Back </a>
+					<a href="logout.php"> Log Out </a>
 				</td>
 			</tr>
 		</table>

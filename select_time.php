@@ -50,6 +50,7 @@
 	
 
 	$showtimes = array();
+	$formattedShowtimes = array();
 	
 
 	while ($row = mysqli_fetch_assoc($result)) {
@@ -59,7 +60,13 @@
 	} 
 
 	// print_r($showtimes);
-       
+	for ($x = 0; $x < $count; $x++) {
+		$date = date_create($showtimes[$x]);
+		$formattedDate = date_format($date, "l\, F j \@ g:ia");
+		array_push($formattedShowtimes, $formattedDate);
+	}
+    
+   
 ?>
 
 <html>
@@ -168,7 +175,7 @@
 	      			echo "<table align='center'>";
 						echo "<tr>";
 							echo "<td>";
-								echo "<a href=\"ticket.php?showtime=$showtimes[$i]\" > $showtimes[$i] </a>";
+								echo "<a href=\"ticket.php?showtime=$showtimes[$i]\" > $formattedShowtimes[$i] </a>";
 							echo "</td>";
 						echo "</tr>";
 					echo "</table>";

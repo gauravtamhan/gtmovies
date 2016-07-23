@@ -1,9 +1,6 @@
 <?php
 	include("config.php");
 	session_start();
-	// if (isset($_SESSION['movie'])) {
-	// 	$_SESSION['movie'] = $_GET['movie'];
-	// }
 	$_SESSION['movie'] = $_GET['movie'];
 	$movie = $_SESSION['movie'];
 ?>

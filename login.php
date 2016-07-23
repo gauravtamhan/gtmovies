@@ -33,7 +33,7 @@
 <html>
    
    <head>
-      <title>Login Page</title>
+      <title>GT Movies</title>
       
       <style type = "text/css">
          body {

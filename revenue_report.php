@@ -5,7 +5,7 @@
 ?>
 
 <?php
-  $query = "SELECT DATENAME(MONTH(`Date`), S0.OrderDateTime) AS Month, SUM(Total_cost) AS Revenue FROM ORDER GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
+  $query = "SELECT MONTH(`Date`) AS Month, SUM(Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price) AS Revenue FROM `ORDERS`, SYSTEM_INFO GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
   $result = mysqli_query($db, $query);
 ?>
 
@@ -56,17 +56,17 @@
 				width: 100%;
 			}
 
-			td:hover {
-				background-color:#f5f5f5
-			}
-			a:link {
-				color: black;
-				text-decoration: none;
-			}
-			a:visited {
-				color: black;
-				text-decoration: none;
-			}
+			/*td:hover {*/
+			/*	background-color:#f5f5f5*/
+			/*}*/
+			/*a:link {*/
+			/*	color: black;*/
+			/*	text-decoration: none;*/
+			/*}*/
+			/*a:visited {*/
+			/*	color: black;*/
+			/*	text-decoration: none;*/
+			/*}*/
 		</style>
 	</head>
 	<body>
@@ -85,8 +85,8 @@
       <?php
          while ($row = mysqli_fetch_array($result)) {
            echo "<tr>";
-           echo "<td>".$row[Month]."</td>";
-           echo "<td>".$row[Revenue]."</td>";
+           echo "<td>".$row['Month']."</td>";
+           echo "<td>".$row['Revenue']."</td>";
            echo "</tr>";
          }
       ?>

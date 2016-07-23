@@ -53,7 +53,7 @@
 
 <html>
 	<head>
-		<title>Theater Results</title>
+		<title>Choose Theater</title>
 
 		<style>
 			h1 {
@@ -201,19 +201,23 @@
             font-family: Georgia;
             cursor: hand;
          }
+
+         input[type = checkbox] {
+         	font-size: 18px;
+         	float: middle;
+         }
+
 		</style>
 	</head>
 	<body>
 		<h1> Search Results </h1>
-		
-		
-		
-
-		<table class="datatable" align="center">
+				
 			
 			<?php
+				echo "<form id='form1' action='select_time.php' method='post'>";
+				echo "<table class='datatable' align='center'>";
 				if ($count > 0) {
-					echo "<form id='form1' action='select_time.php' method='post'>"; 
+					 
 					$i = 0;
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";
@@ -240,21 +244,31 @@
 						echo "</tr>";
 						$i++;
 					}
-					echo "</form>";
+					
+					echo "</table>";
+
+					// check box
+					// echo "<input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label> Save this theater </label>";
+					
+					echo "<table align='center' class='button-black'>";
+						echo "<tr class='button-black'>";
+				            echo "<td class='button-black'>";
+				              echo "<input type='checkbox' name='addToPrefferedTheaters' value='Yes' /> <label> Save this theater </label>";
+				            echo "</td>";
+				        echo "</tr>";
+				    	echo "<tr class='button-black'>";
+				            echo "<td class='button-black'>";
+				              echo "<input type='submit' form='form1' value='Next'/>";
+				            echo "</td>";
+				        echo "</tr>";
+				    echo "</table>";
+				    echo "</form>";
 				} else {
-					$error = "Search did not find any results.";
+					echo "<p> Search did not find any results. </p>";
 				}
 			?>			
-		</table>
-
-
-		<table align="center" class="button-black">
-          <tr class="button-black">
-            <td class="button-black">
-              <input type="submit" form="form1" value="Next"/>
-            </td>
-          </tr>
-     	 </table>
+		
+		
      	 <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">

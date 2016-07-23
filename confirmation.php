@@ -63,7 +63,7 @@
 	if (isset($_POST['addToSavedCards']) && $_POST['addToSavedCards'] == 'Yes') {
 
 	    $query = "INSERT INTO PAYMENT_INFO (Card_No, CVV, Name_on_card, Expiration_Date, Saved, Username) VALUES ('$card_num', '$card_cvv', 'cardholder_name', 'card_exp', 1, '$user')";
-	    mysqli_query($db, $query);
+	    // mysqli_query($db, $query);
 	
 	    // Debugging check: This code block should be left commented when not debugging.
 	    

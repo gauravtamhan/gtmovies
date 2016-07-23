@@ -13,6 +13,21 @@
 
 ?>
 
+<?php 
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$numAdultTickets = $_POST["AdultTickets"];
+		$numSeniorTickets = $_POST["SeniorTickets"];
+		$numChildTickets = $_POST["ChildTickets"];
+
+		
+		$_SESSION["numAdultTickets"] = $numAdultTickets;
+		$_SESSION["numSeniorTickets"] = $numSeniorTickets;
+		$_SESSION["numChildTickets"] = $numChildTickets;
+		
+		header("location: payment_info.php");
+	}
+?>
+
 <html>
    
    <head>
@@ -24,6 +39,19 @@
 			font-size: 50px;
 			text-align: center;
 			padding-top: 20px;
+		}
+
+		h2 {
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 1px;
+			font-size: 35px;
+			color: #4d4d4d;
+			font-family: Verdana;
+			font-style: italic;
+			font-weight: lighter;
+			/*width: 70%;
+			display: inline-block;*/
 		}
 
 		hr {
@@ -41,92 +69,115 @@
 			color: #4d4d4d;
 		}
 
-		p.error {
-			font-size: 20px;
-			font-family: Verdana;
-			font-style: italic;
-			margin-top: 10%;
-			padding-top: 40px;
-			padding-left: 100px;
-			padding-right: 100px;
-			text-align: center;
-			color: grey;
-		}
-		p.error2 {
-			font-size: 20px;
-			font-family: Verdana;
-			font-style: italic;
-			padding: 0px 100px;
-			text-align: center;
-			color: grey;
-		}
+		label {
+         		text-align: left;
+				padding-top: 10px;
+				padding-bottom: 1px;
+				font-size: 20px;
+				color: #4d4d4d;
+				font-family: Verdana;
+				width: 20%;
+				display: inline;
+         }
 
-		table.backbutton {
-            margin-top: 0px;
-            border-collapse: separate;
-            height: 50px;
-            width: 29.5%;
+         .container {
+         	width: 500px;
+         	border: none;
+         	margin-top:30px;
+         }
+
+         select {
+             -webkit-appearance: button;
+             -webkit-border-radius: 2px;
+             -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+             -webkit-padding-end: 20px;
+             -webkit-padding-start: 2px;
+             -webkit-user-select: none;
+             background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+             background-position: 97% center;
+             background-repeat: no-repeat;
+             border: 1px solid #AAA;
+             color: #555;
+             font-size: inherit;
+             margin: 20px;
+             overflow: hidden;
+             padding: 5px 10px;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+             width: 60px;
+          }
+
+          input[type=submit] {
+            width: 60%;
+            font-size: 15px;
+            background-color: black;
+            border-radius: 3px;
+            color: white;
+            margin-top:40px;
+            margin-left: 35px;
+            padding: 10px;
             border: none;
-            border-spacing: 20px;
-	   	}
+            font-family: Georgia;
+            cursor: hand;
+            
+         }
 
-      	table {
-      		border-collapse: separate;
-      		border: none;
-      		border-spacing: 20px;
-      		width: 50%;
-      	}
-
-      	th, td {
-    		border: 1px solid black;
-		}
-
-		td {
-
-			/*height: 50px;*/
-			text-align: center;
-			width: 50%;
-			font-family: Georgia;
-			font-size: 20px;
-		}
-
-		a {
-			display: block;
-			width: 100%;
-			padding: 10px 0px;
-		}
-		
-		td:hover {
-			background-color:#f5f5f5
-		}
-
-		a:link {
-			color: black;
-			text-decoration: none;
-		}
-
-		a:visited {
-			color: black;
-			text-decoration: none;
-		}
+         form {
+         	border: 1px solid black;
+         	width: 260px;
+         	padding-left: 30px;	
+         	padding-bottom: 10px;
+         }
       </style>
 
    </head>
    
    <body>
-      <center><h1> Buy a Ticket </h1> </center>
+      <h1> Buy a Ticket </h1>
       <hr>
       <p class="subtitle"> Movie: <?php echo $movie?> </p>
       <p class="subtitle"> Location: <?php echo $theater?> </p>
       <p class="subtitle"> Date: <?php echo $formattedDate?> </p>
-      
-		<table align="center" class="backbutton">
-          <tr class="button">
-            <td class="button">
-              <a class="button" href="#"> Next </a>
-            </td>
-          </tr>
-        </table>
+      <hr>
+      <h2> Select the Amount </h2>
+
+      <div align = "center">
+         <div class="container" align = "left">
+            
+				
+            <div style = "margin-left:100px; margin-bottom:50px;">
+               
+               <form action = "" method = "post">
+                  <label> Adult Tickets</label> <select name="AdultTickets">
+                  						<option value = "0"> 0 </option>
+                  						<option value = "1"> 1 </option>
+                  						<option value = "2"> 2 </option>
+                  						<option value = "3"> 3 </option>
+                  						<option value = "4"> 4 </option>
+                  						<option value = "5"> 5 </option> </select> <br>
+               	  <label> Senior Tickets</label> <select name="SeniorTickets">
+                  						<option value = "0"> 0 </option>
+                  						<option value = "1"> 1 </option>
+                  						<option value = "2"> 2 </option>
+                  						<option value = "3"> 3 </option>
+                  						<option value = "4"> 4 </option>
+                  						<option value = "5"> 5 </option> </select> <br>
+                  <label> Child Tickets</label> <select name="ChildTickets">
+                  						<option value = "0"> 0 </option>
+                  						<option value = "1"> 1 </option>
+                  						<option value = "2"> 2 </option>
+                  						<option value = "3"> 3 </option>
+                  						<option value = "4"> 4 </option>
+                  						<option value = "5"> 5 </option> </select> <br>
+                  <input type = "submit" value = "Submit"/>
+               </form>
+					
+            </div>
+				
+         </div>
+			
+      </div>
+
 		
    </body>
    

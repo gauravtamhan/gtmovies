@@ -1,32 +1,45 @@
 <?php
-   include("config.php");
-   session_start();
-   $user = $_SESSION["current_user"];
+	include("config.php");
+	session_start();
+	$showtime = $_SESSION['showtime'];
+	$user = $_SESSION["current_user"];
+   	$movie = $_SESSION["movie"];
+   	$theater = $_SESSION["theater"];
+
+   	// format the showtime
+   	$date = date_create($showtime);
+	$formattedDate = date_format($date, "l\, F j \@ g:ia");
+
+	$adultTicketCount = $_SESSION["numAdultTickets"];
+	$seniorTicketCount = $_SESSION["numSeniorTickets"];
+	$childTicketCount = $_SESSION["numChildTickets"];
+
+	echo $user." bought ".$adultTicketCount." adult tickets, ".$seniorTicketCount." senior tickets, ".$childTicketCount." child tickets.";
 ?>
 
 <?php
-	$query = "SELECT Card_No, Name_on_Card, Expiration_Date  FROM PAYMENT_INFO WHERE Username = '$user' AND Saved = 1 ";
+	// $query = "SELECT Card_No, Name_on_Card, Expiration_Date  FROM PAYMENT_INFO WHERE Username = '$user' AND Saved = 1 ";
 
-	$result = mysqli_query($db, $query);
-	$count = mysqli_num_rows($result);
+	// $result = mysqli_query($db, $query);
+	// $count = mysqli_num_rows($result);
 	
 
-	$card_no = array();
-	$name_card = array();
-	$expiration = array();
+	// $card_no = array();
+	// $name_card = array();
+	// $expiration = array();
 
-	while ($row = mysqli_fetch_assoc($result)) {
+	// while ($row = mysqli_fetch_assoc($result)) {
 
-    	array_push($card_no, $row["Card_No"]);
-    	array_push($name_card, $row["Name_on_Card"]);
-    	array_push($expiration, $row["Expiration_Date"]);
+ //    	array_push($card_no, $row["Card_No"]);
+ //    	array_push($name_card, $row["Name_on_Card"]);
+ //    	array_push($expiration, $row["Expiration_Date"]);
 
-	} 
-	  // print_r($orderIDs);
-	  // echo $count;
+	// } 
+	//   // print_r($orderIDs);
+	//   // echo $count;
 ?>
 
-<html>
+<!-- <html>
 	<head>
 		<title>Payment Information</title>
 
@@ -146,28 +159,28 @@
 				<th class="datatable"> Exp Date </th>
 			</tr>
 			<?php
-				$i = 0;
-				while ($i < $count) {
-					echo "<tr class="."datatable".">";
-						echo "<td class="."datatable".">";
-							echo "<input type="."radio"." name="."A".">";
-						echo "</td>";
+				// $i = 0;
+				// while ($i < $count) {
+				// 	echo "<tr class="."datatable".">";
+				// 		echo "<td class="."datatable".">";
+				// 			echo "<input type="."radio"." name="."A".">";
+				// 		echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $card_no[$i];
-						echo "</td>";
+				// 		echo "<td class="."datatable".">";
+				// 			echo $card_no[$i];
+				// 		echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $name_card[$i];
-						echo "</td>";
+				// 		echo "<td class="."datatable".">";
+				// 			echo $name_card[$i];
+				// 		echo "</td>";
 
-						echo "<td class="."datatable".">";
-							echo $expiration[$i];
-						echo "</td>";
+				// 		echo "<td class="."datatable".">";
+				// 			echo $expiration[$i];
+				// 		echo "</td>";
 
-					echo "</tr>";
-					$i++;
-				}
+				// 	echo "</tr>";
+				// 	$i++;
+				// }
 			?>			
 		</table>
 		<table align="center" class="button backbutton">
@@ -184,5 +197,5 @@
         </table>
 
 	</body>
-</html>
+</html> -->
 

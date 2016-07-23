@@ -88,16 +88,35 @@
 	      	
 	      	}
 
-	      	th.datatable, td.datatable {
-	    		padding: 5px;
+	      	td.datatable-address {
+	    		/*padding: 5px;*/
+	    		height: 30px;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 15px;
+				border-bottom: 1px solid black;
 			}
 
-			th.datatable {
+			td.datatable-selector {
+	    		/*padding: 5px;*/
+	    		padding-left: 10px;
+	    		height: 30px;
+	    		vertical-align: bottom;
+				text-align: center;
+				font-family: Georgia;
+				font-size: 15px;
+				
+			}
+	      	/*th.datatable, td.datatable {
+	    		padding: 5px;
+			}*/
+
+			/*th.datatable {
 				height: 55px;
 				font-family: Georgia;
 				font-size: 100px;
 				border-bottom: 1px solid black;
-			}
+			}*/
 
 			td.datatable {
 				height: 50px;
@@ -113,7 +132,22 @@
 
 			}
 
-			
+			table.button-black {
+				margin-top: 60px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+	            height: 50px;
+	      	}
+
+			td.button-black {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				border: none;
+			}
 
 			table.button {
 				margin-top: 60px;
@@ -155,12 +189,36 @@
 				text-decoration: none;
 			}
 
+			table.backbutton {
+	            margin-top: 0px;
+	            border-collapse: separate;
+	            height: 50px;
+	            width: 29.5%;
+	            border: none;
+	            border-spacing: 20px;
+          	}
+
 			.backbutton {
 	            margin-top: 0px;
 	            border-collapse: separate;
 	            height: 50px;
 	            border: none;
 	            border-spacing: 20px;
+          }
+
+          input[type=submit] {
+            width: 100%;
+            font-size: 18px;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+         }
+
+          input[type=radio] {
+          	margin-left: 15px;
           }
 		</style>
 	</head>
@@ -180,22 +238,22 @@
 				<?php
 					while ($i < $count) {
 						echo "<tr>";
-							echo "<td rowspan="."2"."class="."datatable"."> <input type=radio name='theater_radio'  value='$theater[$i]' ></th>";
+							echo "<td rowspan="."2"."class="."datatable-selector"."> <input type=radio name='theater_radio' checked='checked' value='$theater[$i]' ></td>";
 								echo "<td class="."datatabletheatername".">";
 								echo $name[$i];
 								echo "</td>";
 							echo "</tr>";
 							echo "<tr class="."datatable".">";
-							echo "<td class="."datatable".">";
+								echo "<td class="."datatable-address".">";
 								
-								echo $street[$i];
-								echo "  ";
-								echo $city[$i];
-								echo "  ";
-								echo $state[$i];
-								echo ", ";
-								echo $zip[$i];
-							echo "</td>";
+									echo $street[$i];
+									echo "  ";
+									echo $city[$i];
+									echo "  ";
+									echo $state[$i];
+									echo ", ";
+									echo $zip[$i];
+								echo "</td>";
 
 						echo "</tr>";
 						$i++;
@@ -209,12 +267,14 @@
 		</table>
 		
 		
-		<table align="center" class="button backbutton">
-          <tr class="button">
-            <td class="button">
+		<table align="center" class="button-black">
+          <tr class="button-black">
+            <td class="button-black">
               <a class="button"> <input type = "submit" name = "delete_theater" value ="Delete Theater"></a>
             </td>
           </tr>
+        </table>
+        <table align = "center" class="backbutton">
           <tr class="button">
             <td class="button">
               <a class="button" href="Me.php"> Back </a>

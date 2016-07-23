@@ -24,28 +24,15 @@
 
 	$count = mysqli_num_rows($result);
 	
-
 	$saved_cards = array();
 
 	while ($row = mysqli_fetch_assoc($result)) {
 
     	array_push($saved_cards, $row["Card_No"]);
     	
-
 	} 
-	  // print_r($saved_cards);
-	  // echo $count;
 ?>
 
-<?php
-	// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	// 	$cardholder_name = $_POST['nameOnCard'];
-	// 	$card_num = $_POST['cardNum'];
-	// 	$card_cvv = $_POST['cardCVV'];
-	// 	$card_exp = $_POST['cardExp'];
-	// 	header("location: confirmation.php");
-	// }
-?>
 
 <html>
    

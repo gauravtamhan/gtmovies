@@ -24,7 +24,7 @@
 	$dateOfOrder = "";
 	$timeOfOrder = "";
 	$order_number = "";
-	$status = "Unused";
+	$status = "Used";
 
 	date_default_timezone_set('America/New_York');
 	
@@ -121,10 +121,270 @@
 		$tuple2 = mysqli_fetch_row($ans2);
 		$order_number = $tuple2[0];
 	}
-
-	echo $order_number;
    
 ?>
 
+<html>
+   
+   <head>
+      <title>Order Confirmation</title>
 
+      <style>
+      	h1 {
+			font-style: italic;
+			font-size: 50px;
+			text-align: center;
+			padding-top: 20px;
+		}
+
+		h2 {
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 1px;
+			font-size: 35px;
+			color: #4d4d4d;
+			font-family: Verdana;
+			font-style: italic;
+			font-weight: lighter;
+		}
+
+		h3 {
+			text-align: center;
+			padding-top: 10px;
+			padding-bottom: 1px;
+			font-size: 25px;
+			color: grey;
+			font-family: Verdana;
+			font-weight: lighter;
+		}
+
+		hr {
+			width: 60%;
+		}
+
+		p.subtitle {
+			font-size: 25px;
+			font-family: Georgia;
+			font-style: italic;
+			padding-top: 5px;
+			padding-left: 5px;
+			/*display: inline-block;*/
+			text-align: center;
+			color: #4d4d4d;
+		}
+
+		label.fancy {
+         		text-align: left;
+				padding-top: 10px;
+				padding-bottom: 1px;
+				font-size: 20px;
+				color: #4d4d4d;
+				font-family: Verdana;
+				width: 180px;
+				display: inline-block;
+         }
+
+         p.mini-head {
+         	text-align: left;
+			padding-top: 10px;
+			padding-bottom: 1px;
+			font-weight: bold;
+			font-size: 20px;
+			color: #4d4d4d;
+			font-family: Verdana;
+         }
+
+         .container {
+         	width: 620px;
+         	border: none;
+         	margin-top:30px;
+
+         }
+
+         select {
+             -webkit-appearance: button;
+             -webkit-border-radius: 2px;
+             -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+             -webkit-padding-end: 20px;
+             -webkit-padding-start: 2px;
+             -webkit-user-select: none;
+             background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+             background-position: 97% center;
+             background-repeat: no-repeat;
+             border: 1px solid #AAA;
+             color: #555;
+             font-size: inherit;
+             margin: 20px;
+             overflow: hidden;
+             padding: 5px 10px;
+             text-overflow: ellipsis;
+             white-space: nowrap;
+             width: 120px;
+          }
+
+          input[type=submit].upper {
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            padding: 7px 15px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+            border-radius: 3px;
+            display: inline;
+         }
+
+         input[type=submit].lower {
+            font-size: 15px;
+            background-color: black;
+            color: white;
+            padding: 7px 15px;
+            border: none;
+            font-family: Georgia;
+            cursor: hand;
+            border-radius: 3px;
+            display: block;
+            margin: 20px 0px;
+         }
+
+         input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+		    -webkit-appearance: none;
+		    -moz-appearance: none;
+		    appearance: none;
+		    margin: 0; 
+		}
+
+         input[type=text], input[type=number], input[type=date] {
+             width: 300px;
+             padding: 5px 10px;
+             margin-top: 20px;
+             margin-left: 20px;
+             margin-right: 20px;
+
+             box-sizing: border-box;
+             border: 1px solid #ccc;
+             -webkit-transition: 0.5s;
+             transition: 0.5s;
+             outline: none;
+             border-radius: 2px;
+             font-family: Georgia;
+             font-size: 15px;
+             display: inline-block;
+         }
+
+         input[type=date] {
+         	margin-bottom: 50px;
+         }
+
+         input[type=text]:focus, input[type=number]:focus, input[type=date]:focus {
+             border: 1px solid black;
+         }
+
+         form.top {
+         	border: 1px solid black;
+         	padding-top: 20px;
+         	padding: 20px;
+         	padding-left: 40px;
+         /*	width: 260px;
+         	padding-left: 30px;	
+         	padding-bottom: 10px;*/
+         }
+
+         form.bottom {
+         	border: 1px solid black;
+         	padding: 20px;
+         	/*padding-left: 40px;*/
+         /*	width: 260px;
+         	padding-left: 30px;	
+         	padding-bottom: 10px;*/
+         }
+
+         input[type = checkbox] {
+         	font-size: 18px;
+         	float: middle;
+         	display: inline-block;
+         	width: 20px;
+         	
+         }
+
+         label.original {
+         	display: inline-block;
+         }
+
+         .backbutton {
+				margin-top: 20px;
+	      		border-collapse: separate;
+	      		width: 30%;
+	      		border: none;
+	      		border-spacing: 20px;
+			}
+
+			table {
+				margin-top: 90px;
+	      		border-collapse: separate;
+	      		width: 80%;
+	      		border: none;
+	      		border-spacing: 20px;
+	      	}
+
+	      	th, td {
+	    		border: 1px solid black;
+			}
+
+			td {
+				/*height: 50px;*/
+				text-align: center;
+				width: 30%;
+				font-family: Georgia;
+				font-size: 20px;
+			}
+
+			a {
+				display: block;
+				width: 100%;
+				padding: 10px 0px;
+			}
+			
+			td:hover {
+				background-color:#f5f5f5
+			}
+
+			a:link {
+				color: black;
+				text-decoration: none;
+			}
+
+			a:visited {
+				color: black;
+				text-decoration: none;
+			}
+
+      </style>
+
+   </head>
+   
+   <body>
+      <h1> Order Confirmation</h1>
+      <hr>
+      <p class="subtitle"> Movie: <?php echo $movie?> </p>
+      <p class="subtitle"> Location: <?php echo $theater?> </p>
+      <p class="subtitle"> Date: <?php echo $formattedDate?> </p>
+      <p class="subtitle"> Order ID: <?php echo $order_number?> </p>
+      <hr>
+      <h2> Thank you for you purchase!</h2>
+      <h3> Please save the order ID for your records. </h3>
+
+    
+ 		<table align="center" class="backbutton">
+			<tr>
+				<td>
+					<a href="home.php"> Back to Now Playing </a>
+				</td>
+			</tr>
+		</table>
+
+
+   </body>
+   
+</html>
 

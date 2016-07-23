@@ -118,7 +118,7 @@
 		<table align="center" class="backbutton">
 			<tr>
 				<td>
-					<a href="home.php"> Back </a>
+					<a href="home.php"> Back to Now Playing </a>
 				</td>
 			</tr>
 		</table>

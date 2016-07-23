@@ -272,7 +272,7 @@
      	 <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">
-              <a class="button" href="choose_theater.php"> Back </a>
+              <a class="button" href="choose_theater.php"> Back to Choose Theater </a>
             </td>
           </tr>
         </table>

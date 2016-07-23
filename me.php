@@ -101,7 +101,7 @@
 			</tr>
 			<tr>
 				<td>
-					<a href="home.php"> Back </a>
+					<a href="home.php"> Back to Now Playing</a>
 				</td>
 			</tr>
 		</table>

@@ -11,7 +11,6 @@
    	$date = date_create($showtime);
 	$formattedDate = date_format($date, "l\, F j \@ g:ia");
 
-	echo "You picked this show time: ".$formattedDate;
 ?>
 
 <html>
@@ -25,7 +24,11 @@
 			font-size: 50px;
 			text-align: center;
 			padding-top: 20px;
-			}
+		}
+
+		hr {
+			width: 60%;
+		}
 
 		p.subtitle {
 			font-size: 25px;
@@ -112,7 +115,10 @@
    
    <body>
       <center><h1> Buy a Ticket </h1> </center>
-      <p class="subtitle"> for <?php echo $movie?> at <?php echo $theater?> on <?php echo $formattedDate?></p>
+      <hr>
+      <p class="subtitle"> Movie: <?php echo $movie?> </p>
+      <p class="subtitle"> Location: <?php echo $theater?> </p>
+      <p class="subtitle"> Date: <?php echo $formattedDate?> </p>
       
 		<table align="center" class="backbutton">
           <tr class="button">

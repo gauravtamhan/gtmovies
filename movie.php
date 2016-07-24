@@ -1,8 +1,13 @@
 <?php
 	include("config.php");
 	session_start();
+	if (empty($_SESSION['current_user'])) {
+   		header('Location: login.php');
+   		exit;
+    }
 	$_SESSION['movie'] = $_GET['movie'];
 	$movie = $_SESSION['movie'];
+	
 ?>
 
 <?php

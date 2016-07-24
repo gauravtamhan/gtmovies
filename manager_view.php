@@ -1,7 +1,12 @@
 <?php
 	include("config.php");
 	session_start();
-	$user = $_SESSION['current_user'];
+	if (empty($_SESSION['current_user'])) {
+   		header('Location: login.php');
+   		exit;
+    } else {
+		$user = $_SESSION['current_user'];
+	}
 ?>
 
 <html>

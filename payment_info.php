@@ -150,11 +150,11 @@
          }
 
          input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
-		    -webkit-appearance: none;
-		    -moz-appearance: none;
-		    appearance: none;
-		    margin: 0; 
-		}
+      		    -webkit-appearance: none;
+      		    -moz-appearance: none;
+      		    appearance: none;
+      		    margin: 0; 
+		    }
 
          input[type=text], input[type=number], input[type=date] {
              width: 300px;

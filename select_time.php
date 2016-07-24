@@ -8,11 +8,19 @@
 <?php 
 	$sql = "";
 	$theater = "";
+
+	$datetimeOfOrder = "";
+	$datetime = date("Y-m-d h:i:s");
+	$datetimeOfOrder = $datetime;
+
 	// sets the sql query if user chose a preferred theater.
 	if (isset($_POST["saved_theater"])) {
 		$saved_theater = $_POST["saved_theater"];
    		$theater = $saved_theater;
-   		$sql = "SELECT Showtime FROM SHOWTIME, THEATER WHERE Movie_title = '$movie' AND SHOWTIME.Theater_ID = THEATER.Theater_ID AND THEATER.Name = '$saved_theater'";
+   		$sql = "SELECT Showtime FROM SHOWTIME, THEATER WHERE Movie_title = '$movie'
+   				AND SHOWTIME.Theater_ID = THEATER.Theater_ID
+   				AND THEATER.Name = '$saved_theater'
+   				AND SHOWTIME.Showtime >= '$datetimeOfOrder'";
 	}
 
 	// sets the sql query if user selects a new theater.

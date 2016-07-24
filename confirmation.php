@@ -23,16 +23,27 @@
 <?php 
 	$dateOfOrder = "";
 	$timeOfOrder = "";
+	$datetimeOfOrder = "";
 	$order_number = "";
-	$status = "Used";
+
+	// $status = "Used";
 
 	date_default_timezone_set('America/New_York');
 	
 	$date = date("Y-m-d");
 	$time = date("h:i:s");
+
+	$datetime = date("Y-m-d h:i:s");
 	
+	$datetimeOfOrder = $datetime;
 	$dateOfOrder = $date;
 	$timeOfOrder = $time;
+
+	if ($datetimeOfOrder >= $showtime) {
+		$status = "Used";
+	} else {
+		$status = "Unused";
+	}
 
 	$query = "SELECT Theater_ID FROM THEATER WHERE Name = '$theater'";
 	$result = mysqli_query($db, $query);
@@ -45,8 +56,8 @@
 		$saved_card_number = $_POST["saved_card"];
 		
 		
-		$sql = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID)
-				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$saved_card_number', '$movie', '$theaterID')";
+		$sql = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID, Order_Showtime)
+				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$saved_card_number', '$movie', '$theaterID', '$showtime')";
 		mysqli_query($db, $sql);
 
 		// gets the order ID from the recently placed order

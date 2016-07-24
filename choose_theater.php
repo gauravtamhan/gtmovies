@@ -52,10 +52,21 @@
             display: inline-block;
          }
 
+         p.subtitle {
+            font-size: 25px;
+            font-family: Georgia;
+            font-style: italic;
+            padding-top: 5px;
+            padding-left: 5px;
+            /*display: inline-block;*/
+            text-align: center;
+            color: #4d4d4d;
+          }
+
          .container {
             width: 500px;
             border: none;
-            margin-top:30px;
+            margin-top:20px;
             margin-left: 12%;
          }
 
@@ -111,7 +122,7 @@
             width: 70%
          }
 
-         p {
+         p.divider {
             margin-left: 30%;
             font-style: italic;
             font-size: 30px;
@@ -207,8 +218,11 @@
    
    <body>
       <h1> Choose a Theater </h1>
-      <hr>
-      <div align = "center">
+     
+      <p class="subtitle"> for <?php echo $movie?> </p>
+     
+      <div align = "center" style = "margin-top:60px;">
+         <hr>
          <div class="container" align = "left">
           
 				
@@ -228,8 +242,8 @@
                               </select>
                   <input type = "submit" name= "choose" value ='Choose' /><br />
                </form>
-               <!-- <br> -->
-               <p> OR </p>
+               <br>
+               <!-- <p class="divider"> OR </p> -->
 
                <form action = "search_theater_result.php" method = "post"> 
                   <label> City/State/Theater </label>
@@ -249,7 +263,7 @@
       <table align="center" class="backbutton">
          <tr>
             <td>
-               <a href="movie.php?movie=<?php echo $movie ?>"> Back </a>
+               <a href="movie.php?movie=<?php echo $movie ?>"> Back to Movie Select </a>
             </td>
          </tr>
       </table>

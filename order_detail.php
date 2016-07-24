@@ -26,6 +26,12 @@
    $time = $row['Time'];
    $status = trim($row['Status']);
 
+   $showtime = $row['Order_Showtime'];
+
+   // format the showtime
+    $date = date_create($showtime);
+    $formattedShowtime = date_format($date, "l\, F j \@ g:ia");
+
 
    //Theater queries
    $query_theater = "SELECT * FROM THEATER WHERE Theater_ID = '$theater_ID'";
@@ -45,37 +51,54 @@
 
    $movie_rating = $row_movie['Rating'];
    $movie_length = $row_movie['Length'];
+   // $movie_duration = date_create($movie_length);
+   // $formatted_movie_duration = date_format($movie_duration, "h 'hr' i 'min'"); // h \h\r i \m\i\n
 
    //System Info queries
    $query_sys_info = "SELECT * FROM SYSTEM_INFO";
    $result_sys_info = mysqli_query($db, $query_sys_info);
    $row_sys_info = mysqli_fetch_assoc($result_sys_info);
-
+   // echo floatval($row_sys_info['Price']). '<br>';
+   // echo gettype(floatval($row_sys_info['Price'])). '<br>';
+   // echo (float)$numb_adults. '<br>';
+   // echo gettype((float)$numb_adults). '<br>';
+   // echo $row_sys_info['Cancellation_fee']. '<br>';
+   // echo $row_sys_info['Child_discount']. '<br>';
+   // echo $row_sys_info['Senior_discount']. '<br>';
    $cancel_fee = floatval($row_sys_info['Cancellation_fee']);
    $child_dis = floatval($row_sys_info['Child_discount']);
    $senior_dis = floatval($row_sys_info['Senior_discount']);
    $price = floatval($row_sys_info['Price']);
+   $cancel_fee = ($row_sys_info['Cancellation_fee']);
+   $child_dis = ($row_sys_info['Child_discount']);
+   // echo (1.00 - $child_dis). '<br>';
+   // echo gettype(1.00-$child_dis);
+   $senior_dis = ($row_sys_info['Senior_discount']);
+   $price = ($row_sys_info['Price']);
 
    //Showtime queries 
    $query_sys_info = "SELECT * FROM SHOWTIME WHERE Theater_ID ='$theater_ID' and Movie_title ='$movie_title' and Showtime = ''";
    $result_showtime = mysqli_query($db, $query_sys_info);
    $row_sys_showtime = mysqli_fetch_assoc($result_showtime);
 
-   $showtime = date("F j, Y, g:i a", strtotime($date . " " . $time));
-
+   // $showtime = date("F j, Y, g:i a", strtotime($date . " " . $time));
+   // echo $showtime;
    //Total price 
-   $total_price = $numb_adults * $price + $numb_children * ($price - $child_dis) + $numb_seniors * ($price - $senior_dis);
-
+   $total_price = (float)$numb_adults * $price + (float)$numb_children * ($price * (1.00 - $child_dis)) + (float)$numb_seniors * ($price * (1.00 - $senior_dis));
+   $formattedPrice = number_format($total_price, 2, '.', ',');
+   // echo $formattedPrice. '<br>';
+   // echo gettype($total_price);
 
    if (isset($_POST['cancel']) && $status == "Cancelled") {
       $error = "The order has already been cancelled.";
-   } else if (isset($_POST['cancel']) && time() > strtotime($date . " " . $time)) {
+   } else if (isset($_POST['cancel']) && $status == "Used") { //time() > strtotime($date . " " . $time)
       $error = "The order cannot be cancelled since the movie's start time has passed.";
    } else if (isset($_POST['cancel'])) {
       $refund_amount = $total_price - $cancel_fee;
+      $formattedrefund = number_format($refund_amount, 2, '.', ',');
       $query_refund = "UPDATE ORDERS SET Status = 'Cancelled' WHERE Order_ID = '$Order_ID'";
-      $result_movie = mysqli_query($db, $query_movie);
-      $refund = "The order has been cancelled. Total refund is $" . $refund_amount  . ".";
+      $result_movie = mysqli_query($db, $query_refund);
+      $refund = "The order has been cancelled. Total refund is $" . $formattedrefund  . ".";
    }
 
 
@@ -91,6 +114,10 @@
             font-size: 50px;
             text-align: center;
             margin-top: 80px;
+         }
+
+         hr {
+          width: 60%;
          }
 
         h2 {
@@ -114,7 +141,7 @@
             border-spacing: 20px;
           }
 
-          table {
+          table.data {
             margin-top: 10px;
             border-collapse: separate;
             width: 100%;
@@ -122,7 +149,7 @@
             border-spacing: 10px;
           }
 
-          td {
+          td.data {
             /*height: 40px;*/
             text-align: center;
             width: 100%;
@@ -135,23 +162,23 @@
             width: 100%;
           }
           
-          td:hover {
+          td.button:hover {
             background-color:#f5f5f5
           }
 
-          a:link {
+          a.button:link {
             color: black;
             text-decoration: none;
           }
 
-          a:visited {
+          a.button:visited {
             color: black;
             text-decoration: none;
           }
           a.button {
             width: 100%;
             padding: 10px 0px;
-            border: 1px solid black;
+            /*border: 1px solid black;*/
           }
 
          label {
@@ -203,10 +230,23 @@
               margin-top: 0px;
               border-collapse: separate;
               height: 50px;
-              border: 1px solid black;
+              /*border: 1px solid black;*/
               border-spacing: 20px;
           }
 
+          table.backbutton {
+              margin-top: 0px;
+              border-collapse: separate;
+              height: 50px;
+              width: 29.5%;
+              border: none;
+              border-spacing: 20px;
+            }
+
+          td.button {
+            border: 1px solid black;
+            text-align: center;
+          }
 
           table.button {
             margin-top: 60px;
@@ -215,6 +255,24 @@
             border: none;
             border-spacing: 20px;
           }
+
+          table.button-black {
+            margin-top: 60px;
+            border-collapse: separate;
+            width: 30%;
+            border: none;
+            border-spacing: 20px;
+              height: 50px;
+          }
+
+          td.button-black {
+            /*height: 50px;*/
+            text-align: center;
+            width: 30%;
+            font-family: Georgia;
+            border: none;
+          }
+
       </style>
       
    </head>
@@ -222,14 +280,15 @@
    <body bgcolor = "#FFFFFF">
       <div class="container" align ="center">
           <h1> Order Detail </h1>
+          <hr>
           <table>
             <th>
-              <table>
+              <table class="data">
                 <tr>
                   <th> 
                     <h2> <?php echo $movie_title?><br/>
-                        <label> <?php echo $movie_rating . ", " . $movie_time_hour . " hr " . $movie_time_min . " min " ?><br/></label>
-                        <label><?php echo $showtime?></label>
+                        <label> <?php echo $movie_rating . " | Duration: " . $movie_length ?><br/></label>
+                        <label><?php echo $formattedShowtime?></label>
                     </h2> 
                   </th>
                   <th> 
@@ -258,7 +317,7 @@
                              <?php
                                 }
                              ?>
-                             <b><?php echo "Total price: " . $total_price?><b/><br/>
+                             <b><?php echo "Total price: $" . $formattedPrice?><b/><br/>
 
                     </h3> 
                   </th>
@@ -269,14 +328,18 @@
         </div>
           <label><?php echo $refund?></label>
           <label class="red"> <?php echo $error ?> </label>
-        <table align="center" class="button backbutton">
-          <tr class="button">
-            <td class="button">
+
+        <table align="center" class="button-black">
+          <tr class="button-black">
+            <td class="button-black">
               <form action = "" method = "post"> 
                 <a> <input type = "submit" name= "cancel" value = 'Cancel this order'/></a>
              </form>
             </td>
           </tr>
+        </table>
+
+        <table align="center" class="backbutton">
           <tr class="button">
             <td class="button">
               <a class="button" href="order_history.php"> Back </a>

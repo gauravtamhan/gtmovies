@@ -39,7 +39,7 @@
 
 	if (isset($_POST['view_detail']) && isset($_POST['order_radio'])) {
 		$_SESSION['order_ID'] = $_POST['order_radio'];
-		// header("location: order_detail.php");
+		header("location: order_detail.php");
 	}
 	  // print_r($orderIDs);
 	  // echo $count;

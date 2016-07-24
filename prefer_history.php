@@ -28,13 +28,15 @@
 
 	} 
 
-
-	if (isset($_POST['delete_theater']) && isset($_POST['theater_radio'])) {
+	
+	if (isset($_POST['delete_theater']) && isset($_POST['theater_radio'])) {	
+		
 		$theater = $_POST['theater_radio'];
 		$query12 = "DELETE FROM PREFERS WHERE Theater_ID = '$theater' and Username = '$user'";
 		mysqli_query($db,$query12);
 		header("location: prefer_history.php");
 	}
+	
 	  // print_r($orderIDs);
 	  // echo $count;
 

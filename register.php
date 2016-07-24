@@ -15,10 +15,12 @@
       
       if ($_POST['password'] == "" || $_POST['conf_password'] == "" || $_POST['email'] == "" || $_POST['username'] == "") {
       		$error = "Please provide input to all fields";
+      } else if () {
+          $error = "Please provide a valid email address"
       } else if ($_POST['mymang_password'] != "" && $_POST['mymang_password'] != $mang_pass) {
-      		$error = "Manager password is incorrect.";
+      		$error = "Manager password is incorrect";
       } else if ($_POST['password'] != $_POST['conf_password']) {
-      		$error = "Password and Confirm Password did not match.";
+      		$error = "Password and Confirm Password did not match";
       } else if ($_POST['mymang_password'] != "" && $_POST['mymang_password'] == $mang_pass) {
             $new_username = $_POST['username'];
             $new_email = $_POST['email'];

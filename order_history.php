@@ -118,7 +118,7 @@
 	      		border-collapse: separate;
 	      		width: 30%;
 	      		border: none;
-	      		border-spacing: 20px;
+	      		border-spacing: 5px;
 	            height: 50px;
 	      	}
 
@@ -136,7 +136,7 @@
 	      		border-collapse: separate;
 	      		width: 30%;
 	      		border: none;
-	      		border-spacing: 20px;
+	      		border-spacing: 5px;
 	      	}
 
 	      	th.button, td.button {
@@ -177,7 +177,7 @@
 	            height: 50px;
 	            width: 29.5%;
 	            border: none;
-	            border-spacing: 20px;
+	            border-spacing: 5px;
           	}
 
 			.backbutton {
@@ -185,7 +185,7 @@
 	            border-collapse: separate;
 	            height: 50px;
 	            border: none;
-	            border-spacing: 20px;
+	            border-spacing: 5px;
           }
 
           input[type=submit].details {

@@ -113,7 +113,7 @@
             font-style: italic;
             font-size: 50px;
             text-align: center;
-            margin-top: 80px;
+            margin-top: 40px;
          }
 
          hr {
@@ -231,7 +231,7 @@
               border-collapse: separate;
               height: 50px;
               /*border: 1px solid black;*/
-              border-spacing: 20px;
+              border-spacing: 5px;
           }
 
           table.backbutton {
@@ -240,7 +240,7 @@
               height: 50px;
               width: 29.5%;
               border: none;
-              border-spacing: 20px;
+              border-spacing: 5px;
             }
 
           td.button {
@@ -261,7 +261,7 @@
             border-collapse: separate;
             width: 30%;
             border: none;
-            border-spacing: 20px;
+            border-spacing: 5px;
               height: 50px;
           }
 

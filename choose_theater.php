@@ -263,7 +263,7 @@
       <table align="center" class="backbutton">
          <tr>
             <td>
-               <a href="movie.php?movie=<?php echo $movie ?>"> Back to Movie Select </a>
+               <a href="movie.php?movie=<?php echo $movie ?>"> Back to Movie Selection </a>
             </td>
          </tr>
       </table>

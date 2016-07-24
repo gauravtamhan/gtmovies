@@ -23,10 +23,11 @@
 	} 
 
 	// if (isset($_POST['order_radio'])) {
-
+	
 	// }
 	// if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (isset($_POST['delete_card']) && isset($_POST['order_radio'])) {
+		
 		$card = $_POST['order_radio'];
 		$query13 = "DELETE FROM PAYMENT_INFO WHERE Card_No = '$card'";
 		mysqli_query($db,$query13);
@@ -202,7 +203,7 @@
 			<?php
 				$i = 0;
 				?>
-				<form action='' method="POST">
+				<form action="" method="post">
 				<?php
 					while ($i < $count) {
 						echo "<tr class="."datatable".">";

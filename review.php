@@ -153,7 +153,7 @@
 				</tr>
 				<tr>
 					<td>
-						<a href="movie.php?movie=<?php echo $movie ?>"> Back </a>
+						<a href="movie.php?movie=<?php echo $movie ?>"> Back to Movie Selection </a>
 					</td>
 					
 				</tr>

@@ -71,7 +71,8 @@
 				AND Username = '$user'
 				AND Card_No = '$saved_card_number'
 				AND Movie_title = '$movie'
-				And Theater_ID = '$theaterID'";
+				And Theater_ID = '$theaterID'
+				AND Order_Showtime = '$showtime'";
 
 		$ans = mysqli_query($db, $sql2);
 		$tuple = mysqli_fetch_row($ans);
@@ -110,8 +111,8 @@
 		    // }
 		}
 
-		$sql3 = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID)
-				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$card_num', '$movie', '$theaterID')";
+		$sql3 = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID, Order_Showtime)
+				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$card_num', '$movie', '$theaterID', '$showtime')";
 
 		mysqli_query($db, $sql3);
 
@@ -126,9 +127,15 @@
 				AND Username = '$user'
 				AND Card_No = '$card_num'
 				AND Movie_title = '$movie'
-				And Theater_ID = '$theaterID'";
+				And Theater_ID = '$theaterID'
+				AND Order_Showtime = '$showtime'";
 
 		$ans2 = mysqli_query($db, $sql4);
+			// if (mysqli_query($db, $sql4)) {
+		 //    	echo " Added able to get orderID successfully.";
+		 //    } else {
+		 //    	echo mysqli_error($db);
+		 //    }
 		$tuple2 = mysqli_fetch_row($ans2);
 		$order_number = $tuple2[0];
 	}

@@ -22,25 +22,15 @@
 
 	} 
 
-	// if (isset($_POST['order_radio'])) {
-	
-	// }
-	// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
 	if (isset($_POST['delete_card']) && isset($_POST['order_radio'])) {
 		
 		$card = $_POST['order_radio'];
-		$query13 = "DELETE FROM PAYMENT_INFO WHERE Card_No = '$card'";
+		$query13 = "UPDATE PAYMENT_INFO SET Saved = '0' WHERE Card_No = '$card'";
 		mysqli_query($db,$query13);
-		// if (mysqli_query($db,$query12)) {
-		// 	echo "Deleted card number: ".$card." successfully.";
-		// } else {
-		// 	echo mysqli_error($db);
-		// }
+	
 		header("location: payment_history.php");
 	}
-	  // print_r($cardno);
-
-	//aleta HSnAWhqJ
 
 
 ?>

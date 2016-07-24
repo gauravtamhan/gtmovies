@@ -31,6 +31,12 @@
     	array_push($saved_cards, $row["Card_No"]);
     	
 	} 
+
+  $error = "";
+  if (isset($_SESSION["error_msg"])) {
+    $error = $_SESSION["error_msg"];
+  }
+  
 ?>
 
 
@@ -254,6 +260,8 @@
                   <label class="fancy"> Card Number </label><input type = "number" name= "cardNum" />
                   <label class="fancy"> CVV </label><input type = "number" name= "cardCVV" />
                   <label class="fancy"> Expiration Date </label><input type = "date" name= "cardExp" placeholder="yyyy-mm-dd"/>
+
+                  <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
 
                   <input type='checkbox' name='addToSavedCards' value='Yes' /> <label class='original'> Save this card for later use </label>
                   

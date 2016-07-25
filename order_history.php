@@ -28,7 +28,7 @@
 		$Order_ID_result = mysqli_query($db, $Order_ID_query);
 		$count_row = mysqli_num_rows($Order_ID_result);
 		if ($count_row == 0) {
-			$error = "The Order ID was not found.";
+			$error = "The Order ID was not found";
 		} else {
 			$_SESSION['order_ID'] = $Order_ID_input;
 			$_SESSION['order_valid'] = 1;
@@ -223,11 +223,11 @@
          }
 
          input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
-      		    -webkit-appearance: none;
-      		    -moz-appearance: none;
-      		    appearance: none;
-      		    margin: 0; 
-		    }
+  		    -webkit-appearance: none;
+  		    -moz-appearance: none;
+  		    appearance: none;
+  		    margin: 0; 
+		 }
 
          input[type=number] {
              width: 300px;

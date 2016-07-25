@@ -5,8 +5,15 @@
 ?>
 
 <?php
-  $query = "SELECT MONTH(`Date`) AS Month, SUM(Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price)-5*(SELECT COUNT(Status) FROM `ORDERS` WHERE Status = ‘Cancelled’) AS Revenue FROM `ORDERS`, SYSTEM_INFO GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
+  $query = "SELECT MONTH(`Date`) AS Month, SUM(Adult_tickets*Price + Child_tickets*(1-Child_discount)*Price + Senior_tickets*(1-Senior_discount)*Price)-5*(SELECT COUNT(Status) FROM `ORDERS` WHERE Status = 'Cancelled') AS Revenue
+  			FROM `ORDERS`, SYSTEM_INFO GROUP BY MONTH(`Date`) ORDER BY MONTH(`Date`)";
   $result = mysqli_query($db, $query);
+  // if (mysqli_query($db, $query)) {
+  // 	echo "query successful";
+  // } else {
+  // 	echo mysqli_error($db);
+  // }
+
 ?>
 
 <html>

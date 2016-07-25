@@ -95,6 +95,9 @@
       $error = "The order cannot be cancelled since the movie's start time has passed.";
    } else if (isset($_POST['cancel'])) {
       $refund_amount = $total_price - $cancel_fee;
+      if ($refund_amount < 0) {
+        $refund_amount = 0;
+      }
       $formattedrefund = number_format($refund_amount, 2, '.', ',');
       $query_refund = "UPDATE ORDERS SET Status = 'Cancelled' WHERE Order_ID = '$Order_ID'";
       $result_movie = mysqli_query($db, $query_refund);

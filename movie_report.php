@@ -5,7 +5,7 @@
 ?>
 
 <?php
-  $query = "(SELECT MONTH(`Date`) AS Month, Movie_title AS Movie, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 5 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 6 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 7 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 8 GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3)";
+  $query = "(SELECT MONTH(`Date`) AS Month, Movie_title AS Movie, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 5 AND Status <> 'Cancelled' GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 6 AND Status <> 'Cancelled' GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 7 AND Status <> 'Cancelled' GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3) UNION (SELECT MONTH(`Date`) AS Month, Movie_title, COUNT(*) AS Orders FROM `ORDERS` WHERE MONTH(`Date`) = 8 AND Status <> 'Cancelled' GROUP BY Movie_title ORDER BY COUNT(*) LIMIT 3)";
   $result = mysqli_query($db, $query);
 ?>
 

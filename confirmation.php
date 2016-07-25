@@ -25,6 +25,7 @@
 	$timeOfOrder = "";
 	$datetimeOfOrder = "";
 	$order_number = "";
+	$error = "";
 
 	// $status = "Used";
 
@@ -80,64 +81,80 @@
 
 	} else { // if the user pays with a new card...
 
-		if (isset($_POST['nameOnCard'])) {
-			$cardholder_name = $_POST['nameOnCard'];
-		}
 
-		if (isset($_POST['cardNum'])) {
-			$card_num = $_POST['cardNum'];
-		}
+		// if (isset($_POST['nameOnCard'])) {
+		// 	$cardholder_name = $_POST['nameOnCard'];
+		// }
 
-		if (isset($_POST['cardCVV'])) {
-			$card_cvv = $_POST['cardCVV'];
-		}
+		// if (isset($_POST['cardNum'])) {
+		// 	$card_num = $_POST['cardNum'];
+		// }
 
-		if (isset($_POST['cardExp'])) {
-			$card_exp = $_POST['cardExp'];
-		}
+		// if (isset($_POST['cardCVV'])) {
+		// 	$card_cvv = $_POST['cardCVV'];
+		// }
+
+		// if (isset($_POST['cardExp'])) {
+		// 	$card_exp = $_POST['cardExp'];
+		// }
+
+
+		$date = strtotime($_POST['cardExp']);
+	      
+	    if ($_POST['nameOnCard'] == "" || $_POST['cardNum'] == "" || $_POST['cardCVV'] == "" || $_POST['cardExp'] == "") {
+	    	$error = "Complete credit card information has not been provided. Please go back to previous page and provide complete information";
+	    } else if ($date <= time()) {
+	        $error = "The credit card has expired. Please go back to previous page and provide information for a different credit card.";
+	    } else {
+	    	$cardholder_name = $_POST['nameOnCard'];
+	    	$card_num = $_POST['cardNum'];
+	    	$card_cvv = $_POST['cardCVV'];
+	    	$card_exp = $_POST['cardExp'];
+
 		
-		// adds the card to payment info if box was checked.
-		if (isset($_POST['addToSavedCards']) && $_POST['addToSavedCards'] == 'Yes') {
+			// adds the card to payment info if box was checked.
+			if (isset($_POST['addToSavedCards']) && $_POST['addToSavedCards'] == 'Yes') {
 
-		    $query = "INSERT INTO PAYMENT_INFO (Card_No, CVV, Name_on_card, Expiration_Date, Saved, Username) VALUES ('$card_num', '$card_cvv', '$cardholder_name', '$card_exp', 1, '$user')";
-		    mysqli_query($db, $query);
-		
-		    // Debugging check: This code block should be left commented when not debugging.
-		    
-		    // if (mysqli_query($db, $query)) {
-		    // 	echo " Added '$card_num' with name on card as '$' to PAYMENT_INFO successfully.";
-		    // } else {
-		    // 	echo mysqli_error($db);
-		    // }
+			    $query = "INSERT INTO PAYMENT_INFO (Card_No, CVV, Name_on_card, Expiration_Date, Saved, Username) VALUES ('$card_num', '$card_cvv', '$cardholder_name', '$card_exp', 1, '$user')";
+			    mysqli_query($db, $query);
+			
+			    // Debugging check: This code block should be left commented when not debugging.
+			    
+			    // if (mysqli_query($db, $query)) {
+			    // 	echo " Added '$card_num' with name on card as '$' to PAYMENT_INFO successfully.";
+			    // } else {
+			    // 	echo mysqli_error($db);
+			    // }
+			}
+
+			$sql3 = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID, Order_Showtime)
+					VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$card_num', '$movie', '$theaterID', '$showtime')";
+
+			mysqli_query($db, $sql3);
+
+			// gets the order ID from the recently placed order
+			$sql4 = "SELECT Order_ID FROM ORDERS WHERE `Date` = '$dateOfOrder'
+					AND Senior_Tickets = '$seniorTicketCount'
+					AND Child_Tickets = '$childTicketCount'
+					AND Adult_Tickets = '$adultTicketCount'
+					AND Total_Tickets = '$totalTicketCount'
+					AND Time = '$timeOfOrder'
+					AND Status = '$status'
+					AND Username = '$user'
+					AND Card_No = '$card_num'
+					AND Movie_title = '$movie'
+					And Theater_ID = '$theaterID'
+					AND Order_Showtime = '$showtime'";
+
+			$ans2 = mysqli_query($db, $sql4);
+				// if (mysqli_query($db, $sql4)) {
+			 //    	echo " Added able to get orderID successfully.";
+			 //    } else {
+			 //    	echo mysqli_error($db);
+			 //    }
+			$tuple2 = mysqli_fetch_row($ans2);
+			$order_number = $tuple2[0];
 		}
-
-		$sql3 = "INSERT INTO ORDERS (`Date`, Senior_Tickets, Child_Tickets, Adult_Tickets, Total_Tickets, Time, Status, Username, Card_No, Movie_title, Theater_ID, Order_Showtime)
-				VALUES ('$dateOfOrder', '$seniorTicketCount', '$childTicketCount', '$adultTicketCount', '$totalTicketCount', '$timeOfOrder', '$status', '$user', '$card_num', '$movie', '$theaterID', '$showtime')";
-
-		mysqli_query($db, $sql3);
-
-		// gets the order ID from the recently placed order
-		$sql4 = "SELECT Order_ID FROM ORDERS WHERE `Date` = '$dateOfOrder'
-				AND Senior_Tickets = '$seniorTicketCount'
-				AND Child_Tickets = '$childTicketCount'
-				AND Adult_Tickets = '$adultTicketCount'
-				AND Total_Tickets = '$totalTicketCount'
-				AND Time = '$timeOfOrder'
-				AND Status = '$status'
-				AND Username = '$user'
-				AND Card_No = '$card_num'
-				AND Movie_title = '$movie'
-				And Theater_ID = '$theaterID'
-				AND Order_Showtime = '$showtime'";
-
-		$ans2 = mysqli_query($db, $sql4);
-			// if (mysqli_query($db, $sql4)) {
-		 //    	echo " Added able to get orderID successfully.";
-		 //    } else {
-		 //    	echo mysqli_error($db);
-		 //    }
-		$tuple2 = mysqli_fetch_row($ans2);
-		$order_number = $tuple2[0];
 	}
    
 ?>
@@ -382,25 +399,40 @@
    </head>
    
    <body>
-      <h1> Order Confirmation</h1>
-      <hr>
-      <p class="subtitle"> Movie: <?php echo $movie?> </p>
-      <p class="subtitle"> Location: <?php echo $theater?> </p>
-      <p class="subtitle"> Date: <?php echo $formattedDate?> </p>
-      <p class="subtitle"> Order ID: <?php echo $order_number?> </p>
-      <hr>
-      <h2> Thank you for you purchase!</h2>
-      <h3> Please save the order ID for your records. </h3>
 
-    
- 		<table align="center" class="backbutton">
-			<tr>
-				<td>
-					<a href="home.php"> Back to Now Playing </a>
-				</td>
-			</tr>
-		</table>
-
+   		<?php 
+	   		if (isset($_POST["saved_card"]) || ($_POST['nameOnCard'] != "" && $_POST['cardNum'] != "" && $_POST['cardCVV'] != "" && $_POST['cardExp'] != "" && strtotime($_POST['cardExp']) >= time())) {
+	   	?>
+	        	<h1> Order Confirmation</h1>
+	      		<hr>
+	      		<p class="subtitle"> Movie: <?php echo $movie?> </p>
+	      		<p class="subtitle"> Location: <?php echo $theater?> </p>
+	      		<p class="subtitle"> Date: <?php echo $formattedDate?> </p>
+	      		<p class="subtitle"> Order ID: <?php echo $order_number?> </p>
+	      		<hr>
+	      		<h2> Thank you for you purchase!</h2>
+	      		<h3> Please save the order ID for your records. </h3>
+			    <table align="center" class="backbutton">
+					<tr>
+						<td>
+							<a href="home.php"> Back to Now Playing </a>
+						</td>
+					</tr>
+				</table>
+	    <?php 
+	    	} else {
+	    ?>
+	    		<h3> <?php echo $error ?></h3>
+			    <table align="center" class="backbutton">
+					<tr>
+						<td>
+							<a href="payment_info.php"> Back </a>
+						</td>
+					</tr>
+				</table>
+		<?php
+	    	}
+	    ?>
 
    </body>
    

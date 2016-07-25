@@ -3,9 +3,6 @@
 	session_start(); 
 	$movie = $_SESSION['movie'];
   $user = $_SESSION["current_user"];
-?>
-
-<?php
 
   // check to see if user has bought a ticket 
   // if they have then they can update, else error

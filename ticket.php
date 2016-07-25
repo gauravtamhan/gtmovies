@@ -11,9 +11,6 @@
    	$date = date_create($showtime);
 	$formattedDate = date_format($date, "l\, F j \@ g:ia");
 
-?>
-
-<?php 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$numAdultTickets = $_POST["AdultTickets"];
 		$numSeniorTickets = $_POST["SeniorTickets"];

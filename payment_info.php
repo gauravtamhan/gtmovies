@@ -31,23 +31,12 @@
     	
 	} 
 
-  // if (isset($_POST['search'])) {
-  //     $date = strtotime($_POST['cardExp']);
-      
-  //     if ($_POST['nameOnCard'] == "" || $_POST['cardNum'] == "" || $_POST['cardCVV'] == "" || $_POST['cardExp'] == "") {
-  //       $error = "Please provide input to all fields";
-  //     } else if ($date < time()) {
-  //       $error = "The credit card has expired. Please provide information for a different credit card.";
-  //     } else {
-  //       $_SESSION['order_ID'] = $Order_ID_input;
+  $error = "";
+  if (isset($_SESSION["error_msg"])) {
+    $error = $_SESSION["error_msg"];
+  }
+  
 
-  //       $_SESSION['cardholder_name'] = $_POST['nameOnCard']; 
-  //       $_SESSION['card_num'] = $_POST['cardNum']
-  //       //$_SESSION['card_cvv'] = $_POST['cardCVV'];
-  //       //$_SESSION['card_exp'] = $_POST['cardExp'];
-  //       header('location: confirmation.php');
-  //     }
-  // }
 ?>
 
 
@@ -272,6 +261,8 @@
                   <label class="fancy"> CVV </label><input type = "number" name= "cardCVV" />
                   <label class="fancy"> Expiration Date </label><input type = "date" name= "cardExp" placeholder="yyyy-mm-dd"/>
                   <label style = "font-size:11px; color:#cc0000; margin-top:10px; margin-bottom: 30px"> <?php echo "$error" ?> </label><br/>
+
+                  <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
 
                   <input type='checkbox' name='addToSavedCards' value='Yes' /> <label class='original'> Save this card for later use </label>
                   

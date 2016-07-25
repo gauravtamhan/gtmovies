@@ -80,6 +80,11 @@
 		$order_number = $tuple[0];
 
 	} else { // if the user pays with a new card...
+		if (isset($_POST['nameOnCard']) == "" || isset($_POST['cardNum']) == "" || isset($_POST['cardCVV']) == "" || isset($_POST['cardExp']) == "") {
+			$_SESSION['error_msg'] = "Please provide input to all fields";
+			header("Location: payment_info.php");
+			exit();
+		}
 
 
 		// if (isset($_POST['nameOnCard'])) {

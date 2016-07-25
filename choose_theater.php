@@ -238,6 +238,9 @@
                                        echo "<option value="."'".$preferred_theaters[$i]."'>".$out."</option>";
                                        $i++;
                                     }
+                                    if ($count == 0) {
+                                      echo "<option> none </option>";
+                                    }
                                  ?>                    
                               </select>
                   <input type = "submit" name= "choose" value ='Choose' /><br />

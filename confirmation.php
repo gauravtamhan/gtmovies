@@ -27,7 +27,6 @@
 	$order_number = "";
 	$error = "";
 
-	// $status = "Used";
 
 	date_default_timezone_set('America/New_York');
 	
@@ -40,11 +39,13 @@
 	$dateOfOrder = $date;
 	$timeOfOrder = $time;
 
-	if ($datetimeOfOrder >= $showtime) {
-		$status = "Used";
-	} else {
-		$status = "Unused";
-	}
+	$status = "Unused";
+	// uneccesary, since an order will always be unused when purchased.
+	// if ($datetimeOfOrder >= $showtime) {
+	// 	$status = "Used";
+	// } else {
+	// 	$status = "Unused";
+	// }
 
 	$query = "SELECT Theater_ID FROM THEATER WHERE Name = '$theater'";
 	$result = mysqli_query($db, $query);

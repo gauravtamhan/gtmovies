@@ -6,12 +6,14 @@
 ?>
 
 <?php 
+	date_default_timezone_set('America/New_York');
 	$sql = "";
 	$theater = "";
 
 	$datetimeOfOrder = "";
-	$datetime = date("Y-m-d h:i:s");
+	$datetime = date("Y-m-d H:i:s");
 	$datetimeOfOrder = $datetime;
+	// echo $datetimeOfOrder;
 
 	// sets the sql query if user chose a preferred theater.
 	if (isset($_POST["saved_theater"])) {

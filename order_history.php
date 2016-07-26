@@ -4,6 +4,10 @@
    $user = $_SESSION["current_user"];
 
 	$error = "";
+
+	$sql = "UPDATE ORDERS SET Status = 'Used' WHERE Order_Showtime < NOW() AND Username = '$user' AND Status = 'Unused'";
+	mysqli_query($db, $sql);
+
 	$query = "SELECT Order_ID, Movie_title, Status FROM ORDERS WHERE Username = '$user'";
 
 	$result = mysqli_query($db, $query);

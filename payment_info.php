@@ -260,9 +260,9 @@
                   <label class="fancy"> Card Number </label><input type = "number" name= "cardNum" />
                   <label class="fancy"> CVV </label><input type = "number" name= "cardCVV" />
                   <label class="fancy"> Expiration Date </label><input type = "date" name= "cardExp" placeholder="yyyy-mm-dd"/>
-                  <label style = "font-size:11px; color:#cc0000; margin-top:10px; margin-bottom: 30px"> <?php echo "$error" ?> </label><br/>
+                  <!-- <label style = "font-size:11px; color:#cc0000; margin-top:10px; margin-bottom: 30px"> <?php echo "$error" ?> </label><br/> -->
 
-                  <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div>
+                  <!-- <div style = "font-size:11px; color:#cc0000; margin-top:10px"> <?php echo "$error" ?> </div> -->
 
                   <input type='checkbox' name='addToSavedCards' value='Yes' /> <label class='original'> Save this card for later use </label>
                   

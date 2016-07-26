@@ -29,7 +29,11 @@
 	if (isset($_POST["selected_theater"])) {
 		$selected_theater = $_POST["selected_theater"];
 		$theater = $selected_theater;
-		$sql = "SELECT Showtime FROM SHOWTIME, THEATER WHERE Movie_title = '$movie' AND SHOWTIME.Theater_ID = THEATER.Theater_ID AND THEATER.Name = '$selected_theater'";
+		$sql = "SELECT Showtime FROM SHOWTIME, THEATER
+				WHERE Movie_title = '$movie'
+				AND SHOWTIME.Theater_ID = THEATER.Theater_ID
+				AND THEATER.Name = '$selected_theater'
+				AND SHOWTIME.Showtime >= '$datetimeOfOrder'";
 	}
 	
 	// adds the new theater to the preferred theater table only if box was checked.
